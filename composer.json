@@ -1,0 +1,32 @@
+{
+    "name": "struzik-vladislav/epp-client",
+    "description": "PHP library for communicating with EPP(Extensible Provisioning Protocol) servers",
+    "keywords": ["epp", "domains", "registry", "registrar"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vladislav Struzik",
+            "email": "vladislav@struzik.blog"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "psr/log": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.0"
+    },
+    "suggest": {
+        "struzik-vladislav/epp-monolog-formatter": "A EPP requests/responses formatter for Monolog"
+    },
+    "autoload": {
+        "psr-4": {
+            "Struzik\\EPPClient\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Struzik\\EPPClient\\": "tests/"
+        }
+    }
+}
