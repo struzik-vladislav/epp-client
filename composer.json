@@ -17,7 +17,8 @@
         "phpunit/phpunit": "~5.0"
     },
     "suggest": {
-        "struzik-vladislav/epp-monolog-formatter": "A EPP requests/responses formatter for Monolog"
+        "struzik-vladislav/epp-monolog-formatter": "A EPP requests/responses formatter for Monolog",
+        "struzik-vladislav/epp-socket-connection": "Socket connection to the EPP servers"
     },
     "autoload": {
         "psr-4": {
