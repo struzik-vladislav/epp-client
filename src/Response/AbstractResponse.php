@@ -2,12 +2,23 @@
 
 namespace Struzik\EPPClient\Response;
 
+/**
+ * Basic implementation of the response object.
+ */
 abstract class AbstractResponse extends \DomDocument implements ResponseInterface
 {
-    /** @var \DOMXPath */
+    /**
+     * XPath query handler.
+     *
+     * @var \DOMXPath
+     */
     public $xpath;
 
-    /** @var array Namespaces used in document */
+    /**
+     * Namespaces used in document.
+     *
+     * @var array
+     */
     private $namespaces = [];
 
     /**
