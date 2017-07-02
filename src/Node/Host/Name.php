@@ -1,15 +1,15 @@
 <?php
 
-namespace Struzik\EPPClient\Node\Session;
+namespace Struzik\EPPClient\Node\Host;
 
 use Struzik\EPPClient\Node\AbstractNode;
 use Struzik\EPPClient\Request\RequestInterface;
 use Struzik\EPPClient\Exception\InvalidArgumentException;
 
 /**
- * Object representation of the <lang> node.
+ * Object representation of the <host:name> node.
  */
-class Language extends AbstractNode
+class Name extends AbstractNode
 {
     /**
      * @param RequestInterface $request    The request object to which the node belongs
@@ -17,7 +17,7 @@ class Language extends AbstractNode
      */
     public function __construct(RequestInterface $request, $parameters = [])
     {
-        parent::__construct($request, 'lang', $parameters);
+        parent::__construct($request, 'host:name', $parameters);
     }
 
     /**
@@ -25,10 +25,10 @@ class Language extends AbstractNode
      */
     protected function handleParameters($parameters = [])
     {
-        if (!isset($parameters['language']) || empty($parameters['language'])) {
-            throw new InvalidArgumentException(sprintf('Missing parameters with a key \'language\''));
+        if (!isset($parameters['host']) || empty($parameters['host'])) {
+            throw new InvalidArgumentException(sprintf('Missing parameters with a key \'host\''));
         }
 
-        $this->getNode()->nodeValue = $parameters['language'];
+        $this->getNode()->nodeValue = $parameters['host'];
     }
 }

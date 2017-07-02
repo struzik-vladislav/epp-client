@@ -238,5 +238,5 @@ interface ResponseInterface
      *
      * @return \DOMNodeList
      */
-    public function get($xpathQuery);
+    public function get($xpathQuery, \DOMNode $contextnode = null);
 }

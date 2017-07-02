@@ -2,6 +2,8 @@
 
 namespace Struzik\EPPClient\Response;
 
+use XPath\DOMXPath;
+
 /**
  * Basic implementation of the response object.
  */
@@ -39,9 +41,9 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
     /**
      * {@inheritdoc}
      */
-    public function get($xpathQuery)
+    public function get($xpathQuery, \DOMNode $contextnode = null)
     {
-        return $this->xpath->query($xpathQuery);
+        return $this->xpath->query($xpathQuery, $contextnode);
     }
 
     /**
@@ -51,9 +53,9 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
      *
      * @return \DOMNode|null
      */
-    public function getFirst($xpathQuery)
+    public function getFirst($xpathQuery, \DOMNode $contextnode = null)
     {
-        $list = $this->get($xpathQuery);
+        $list = $this->get($xpathQuery, $contextnode);
 
         return count($list) ? $list->item(0) : null;
     }
@@ -75,7 +77,8 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
      */
     private function initDOMXPath()
     {
-        $this->xpath = new \DOMXPath($this);
+        $this->xpath = new DOMXPath($this);
+
         $simpleXML = new \SimpleXMLElement($this->saveXML());
         $namespaces = $simpleXML->getNamespaces(true);
 

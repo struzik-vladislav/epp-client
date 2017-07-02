@@ -13,7 +13,7 @@ class Version extends AbstractNode
 {
     /**
      * @param RequestInterface $request    The request object to which the node belongs
-     * @param array           $parameters Array of parameters who will be passed in self::handleParameters
+     * @param array            $parameters Array of parameters who will be passed in self::handleParameters
      */
     public function __construct(RequestInterface $request, $parameters = [])
     {
