@@ -26,7 +26,7 @@ class ExtensionURI extends AbstractNode
     protected function handleParameters($parameters = [])
     {
         if (!isset($parameters['uri']) || empty($parameters['uri'])) {
-            throw new InvalidArgumentException(sprintf('Missing parameters with a key \'uri\''));
+            throw new InvalidArgumentException('Missing parameters with a key \'uri\'');
         }
 
         $this->getNode()->nodeValue = $parameters['uri'];

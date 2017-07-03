@@ -26,7 +26,7 @@ class ClientId extends AbstractNode
     protected function handleParameters($parameters = [])
     {
         if (!isset($parameters['login']) || empty($parameters['login'])) {
-            throw new InvalidArgumentException(sprintf('Missing parameters with a key \'login\''));
+            throw new InvalidArgumentException('Missing parameters with a key \'login\'');
         }
 
         $this->getNode()->nodeValue = $parameters['login'];

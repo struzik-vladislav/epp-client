@@ -61,7 +61,7 @@ class Check extends AbstractRequest
     /**
      * Adding a hostname to the list.
      *
-     * @param string $host hostname
+     * @param string $host fully qualified name of the host object
      *
      * @return self
      */
@@ -77,7 +77,7 @@ class Check extends AbstractRequest
     /**
      * Removing a hostname from the list.
      *
-     * @param string $host hostname
+     * @param string $host fully qualified name of the host object
      *
      * @return self
      */

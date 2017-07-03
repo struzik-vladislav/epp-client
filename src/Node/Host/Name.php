@@ -26,7 +26,7 @@ class Name extends AbstractNode
     protected function handleParameters($parameters = [])
     {
         if (!isset($parameters['host']) || empty($parameters['host'])) {
-            throw new InvalidArgumentException(sprintf('Missing parameters with a key \'host\''));
+            throw new InvalidArgumentException('Missing parameters with a key \'host\'');
         }
 
         $this->getNode()->nodeValue = $parameters['host'];
