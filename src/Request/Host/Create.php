@@ -93,7 +93,7 @@ class Create extends AbstractRequest
      *
      * @return self
      */
-    public function addIP($address)
+    public function addAddress($address)
     {
         if (!isset($this->addresses[$address])) {
             $this->addresses[$address] = $address;
@@ -109,7 +109,7 @@ class Create extends AbstractRequest
      *
      * @return self
      */
-    public function removeIP($address)
+    public function removeAddress($address)
     {
         if (isset($this->addresses[$address])) {
             unset($this->addresses[$address]);

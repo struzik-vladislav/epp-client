@@ -26,7 +26,7 @@ class NewPassword extends AbstractNode
     protected function handleParameters($parameters = [])
     {
         if (!isset($parameters['new-password']) || empty($parameters['new-password'])) {
-            throw new InvalidArgumentException('Missing parameters with a key \'new-password\'');
+            throw new InvalidArgumentException('Missing parameter with a key \'new-password\'.');
         }
 
         $this->getNode()->nodeValue = $parameters['new-password'];

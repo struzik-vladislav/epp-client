@@ -30,7 +30,7 @@ class Address extends AbstractNode
     protected function handleParameters($parameters = [])
     {
         if (!isset($parameters['address']) || empty($parameters['address'])) {
-            throw new InvalidArgumentException('Missing parameters with a key \'address\'');
+            throw new InvalidArgumentException('Missing parameter with a key \'address\'.');
         }
 
         if (filter_var($parameters['address'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
@@ -38,7 +38,7 @@ class Address extends AbstractNode
         } elseif (filter_var($parameters['address'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
             $type = self::IP_V6;
         } else {
-            throw new UnexpectedValueException('The value of the parameter \'address\' must be a valid IPv4 or IPv6 address');
+            throw new UnexpectedValueException('The value of the parameter \'address\' must be a valid IPv4 or IPv6 address.');
         }
 
         $this->getNode()->nodeValue = $parameters['address'];

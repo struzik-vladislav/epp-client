@@ -26,7 +26,7 @@ class Language extends AbstractNode
     protected function handleParameters($parameters = [])
     {
         if (!isset($parameters['language']) || empty($parameters['language'])) {
-            throw new InvalidArgumentException('Missing parameters with a key \'language\'');
+            throw new InvalidArgumentException('Missing parameter with a key \'language\'.');
         }
 
         $this->getNode()->nodeValue = $parameters['language'];

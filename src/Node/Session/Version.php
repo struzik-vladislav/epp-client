@@ -26,7 +26,7 @@ class Version extends AbstractNode
     protected function handleParameters($parameters = [])
     {
         if (!isset($parameters['version']) || empty($parameters['version'])) {
-            throw new InvalidArgumentException('Missing parameters with a key \'version\'');
+            throw new InvalidArgumentException('Missing parameter with a key \'version\'.');
         }
 
         $this->getNode()->nodeValue = $parameters['version'];
