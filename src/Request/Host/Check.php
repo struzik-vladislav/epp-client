@@ -38,7 +38,7 @@ class Check extends AbstractRequest
         $check->append($hostCheck);
 
         if (count($this->hosts) == 0) {
-            throw new UnexpectedValueException('List of hosts to be checking cannot be empty');
+            throw new UnexpectedValueException('List of hosts to be checking cannot be empty.');
         }
 
         foreach ($this->hosts as $item) {
@@ -59,7 +59,7 @@ class Check extends AbstractRequest
     }
 
     /**
-     * Adding a hostname to the list.
+     * Adding a host to the list.
      *
      * @param string $host fully qualified name of the host object
      *
@@ -75,7 +75,7 @@ class Check extends AbstractRequest
     }
 
     /**
-     * Removing a hostname from the list.
+     * Removing a host from the list.
      *
      * @param string $host fully qualified name of the host object
      *

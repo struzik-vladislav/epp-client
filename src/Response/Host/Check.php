@@ -20,7 +20,9 @@ class Check extends AbstractCommonResponse
     }
 
     /**
-     * Hostname is available for creating.
+     * Host is available for creating.
+     *
+     * @param $host fully qualified name of the host object
      *
      * @return bool
      */
@@ -33,7 +35,9 @@ class Check extends AbstractCommonResponse
     }
 
     /**
-     * The reason why a host name is not available for creation.
+     * The reason why a host is not available for creation.
+     *
+     * @param $host fully qualified name of the host object
      *
      * @return string
      */
@@ -46,9 +50,9 @@ class Check extends AbstractCommonResponse
     }
 
     /**
-     * Getting the <host:cd> node by hostname.
+     * Getting the <host:cd> node by host.
      *
-     * @param string $host hostname
+     * @param string $host fully qualified name of the host object
      *
      * @return \DOMElement
      *
@@ -61,7 +65,7 @@ class Check extends AbstractCommonResponse
         $node = $this->getFirst($query);
 
         if ($node === null) {
-            throw new UnexpectedValueException(sprintf('Host with name [%s] not found', $host));
+            throw new UnexpectedValueException(sprintf('Host with name [%s] not found.', $host));
         }
 
         return $node;
