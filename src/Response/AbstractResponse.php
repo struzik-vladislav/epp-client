@@ -47,11 +47,7 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
     }
 
     /**
-     * Evaluates the given XPath expression and return the first element from DOMNodeList or null.
-     *
-     * @param  string
-     *
-     * @return \DOMNode|null
+     * {@inheritdoc}
      */
     public function getFirst($xpathQuery, \DOMNode $contextnode = null)
     {

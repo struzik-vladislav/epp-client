@@ -239,4 +239,13 @@ interface ResponseInterface
      * @return \DOMNodeList
      */
     public function get($xpathQuery, \DOMNode $contextnode = null);
+
+    /**
+     * Evaluates the given XPath expression and return the first element from DOMNodeList or null.
+     *
+     * @param  string
+     *
+     * @return \DOMNode|null
+     */
+    public function getFirst($xpathQuery, \DOMNode $contextnode = null);
 }

@@ -45,7 +45,7 @@ class Greeting extends AbstractResponse
             return $node->nodeValue;
         }
 
-        return \DateTime::createFromFormat($format, $node->nodeValue);
+        return date_create_from_format($format, $node->nodeValue);
     }
 
     /**

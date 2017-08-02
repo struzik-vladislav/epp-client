@@ -113,22 +113,22 @@ class Info extends AbstractCommonResponse
      *
      * @param string $format format of the date string
      *
-     * @return \DateTime | null
+     * @return \DateTime|string
      */
-    public function getCreateDate($format)
+    public function getCreateDate($format = null)
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/host:infData/host:crDate');
-        if ($node) {
-            return \DateTime::createFromFormat($format, $node->nodeValue);
+        if ($format === null) {
+            return $node->nodeValue;
         }
 
-        return;
+        return date_create_from_format($format, $node->nodeValue);
     }
 
     /**
      * The identifier of the updater (registry).
      *
-     * @return string | null
+     * @return string|null
      */
     public function getUpdaterId()
     {
@@ -145,16 +145,20 @@ class Info extends AbstractCommonResponse
      *
      * @param string $format format of the date string
      *
-     * @return \DateTime | null
+     * @return \DateTime|string|null
      */
-    public function getUpdateDate($format)
+    public function getUpdateDate($format = null)
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/host:infData/host:upDate');
-        if ($node) {
-            return \DateTime::createFromFormat($format, $node->nodeValue);
+        if ($node === null) {
+            return null;
         }
 
-        return;
+        if ($format === null) {
+            return $node->nodeValue;
+        }
+
+        return date_create_from_format($format, $node->nodeValue);
     }
 
     /**
@@ -162,15 +166,19 @@ class Info extends AbstractCommonResponse
      *
      * @param string $format format of the date string
      *
-     * @return \DateTime | null
+     * @return \DateTime|string|null
      */
-    public function getTransferDate($format)
+    public function getTransferDate($format = null)
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/host:infData/host:trDate');
-        if ($node) {
-            return \DateTime::createFromFormat($format, $node->nodeValue);
+        if ($node === null) {
+            return null;
         }
 
-        return;
+        if ($format === null) {
+            return $node->nodeValue;
+        }
+
+        return date_create_from_format($format, $node->nodeValue);
     }
 }

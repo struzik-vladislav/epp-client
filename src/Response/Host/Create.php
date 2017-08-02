@@ -34,15 +34,15 @@ class Create extends AbstractCommonResponse
      *
      * @param string $format format of the date string
      *
-     * @return \DateTime | null
+     * @return \DateTime|string
      */
-    public function getCreateDate($format)
+    public function getCreateDate($format = null)
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/host:creData/host:crDate');
-        if ($node) {
-            return \DateTime::createFromFormat($format, $node->nodeValue);
+        if ($format === null) {
+            return $node->nodeValue;
         }
 
-        return;
+        return date_create_from_format($format, $node->nodeValue);
     }
 }
