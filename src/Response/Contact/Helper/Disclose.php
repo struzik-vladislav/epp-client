@@ -4,12 +4,11 @@ namespace Struzik\EPPClient\Response\Contact\Helper;
 
 use Struzik\EPPClient\Exception\UnexpectedValueException;
 use Struzik\EPPClient\Response\ResponseInterface;
-use Struzik\EPPClient\Node\Contact\Disclose;
 
 /**
  * Helper for object representation of a <contact:disclose> node.
  */
-class DiscloseHelper
+class Disclose
 {
     /**
      * @var ResponseInterface

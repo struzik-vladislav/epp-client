@@ -65,7 +65,7 @@ class Check extends AbstractRequest
      *
      * @return self
      */
-    public function addID($identifier)
+    public function addIdentifier($identifier)
     {
         if (!isset($this->identifiers[$identifier])) {
             $this->identifiers[$identifier] = $identifier;
@@ -81,7 +81,7 @@ class Check extends AbstractRequest
      *
      * @return self
      */
-    public function removeID($identifier)
+    public function removeIdentifier($identifier)
     {
         if (isset($this->identifiers[$identifier])) {
             unset($this->identifiers[$identifier]);

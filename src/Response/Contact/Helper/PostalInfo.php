@@ -8,7 +8,7 @@ use Struzik\EPPClient\Response\ResponseInterface;
 /**
  * Helper for object representation of a <contact:postalInfo> node.
  */
-class PostalInfoHelper
+class PostalInfo
 {
     /**
      * @var ResponseInterface

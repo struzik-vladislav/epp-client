@@ -4,8 +4,8 @@ namespace Struzik\EPPClient\Response\Contact;
 
 use Struzik\EPPClient\Response\AbstractCommonResponse;
 use Struzik\EPPClient\Node\Contact\PostalInfo;
-use Struzik\EPPClient\Response\Contact\Helper\DiscloseHelper;
-use Struzik\EPPClient\Response\Contact\Helper\PostalInfoHelper;
+use Struzik\EPPClient\Response\Contact\Helper\Disclose;
+use Struzik\EPPClient\Response\Contact\Helper\PostalInfo as PostalInfoHelper;
 use Struzik\EPPClient\Exception\UnexpectedValueException;
 
 /**
@@ -84,7 +84,11 @@ class Info extends AbstractCommonResponse
     public function getPostalInfo($type)
     {
         if (!in_array($type, [PostalInfo::TYPE_INT, PostalInfo::TYPE_LOC])) {
-            throw new UnexpectedValueException('The value of the parameter \'type\' must be set to \'int\' or \'loc\'.');
+            throw new UnexpectedValueException(sprintf(
+                'The value of the parameter \'type\' must be set to \'%s\' or \'%s\'.',
+                PostalInfo::TYPE_INT,
+                PostalInfo::TYPE_LOC
+            ));
         }
 
         $query = sprintf('//epp:epp/epp:response/epp:resData/contact:infData/contact:postalInfo[@type=\'%s\']', $type);
@@ -242,7 +246,7 @@ class Info extends AbstractCommonResponse
     /**
      * The contact's disclosure preferences.
      *
-     * @return DiscloseHelper|null
+     * @return Disclose|null
      */
     public function getDisclose()
     {
@@ -251,6 +255,6 @@ class Info extends AbstractCommonResponse
             return null;
         }
 
-        return new DiscloseHelper($this, $node);
+        return new Disclose($this, $node);
     }
 }

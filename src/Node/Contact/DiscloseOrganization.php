@@ -8,12 +8,12 @@ use Struzik\EPPClient\Exception\InvalidArgumentException;
 use Struzik\EPPClient\Exception\UnexpectedValueException;
 
 /**
- * Object representation of the <contact:postalInfo> node.
+ * Object representation of the <contact:org> node for disclosing information.
  */
-class PostalInfo extends AbstractNode
+class DiscloseOrganization extends AbstractNode
 {
-    const TYPE_INT = 'int';
     const TYPE_LOC = 'loc';
+    const TYPE_INT = 'int';
 
     /**
      * @param RequestInterface $request    The request object to which the node belongs
@@ -21,7 +21,7 @@ class PostalInfo extends AbstractNode
      */
     public function __construct(RequestInterface $request, $parameters = [])
     {
-        parent::__construct($request, 'contact:postalInfo', $parameters);
+        parent::__construct($request, 'contact:org', $parameters);
     }
 
     /**
@@ -34,7 +34,7 @@ class PostalInfo extends AbstractNode
         }
         if (!in_array($parameters['type'], [self::TYPE_INT, self::TYPE_LOC])) {
             throw new UnexpectedValueException(sprintf(
-                'The value of the parameter \'type\' must be set to \'%s\' or \'%s\'.',
+                'The value of the parameter with a key \'type\' must be set to \'%s\' or \'%s\'.',
                 self::TYPE_INT,
                 self::TYPE_LOC
             ));

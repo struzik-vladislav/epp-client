@@ -20,9 +20,9 @@ class Disclose extends AbstractNode
     /**
      * @param RequestInterface $request The request object to which the node belongs
      */
-    public function __construct(RequestInterface $request)
+    public function __construct(RequestInterface $request, $parameters = [])
     {
-        parent::__construct($request, 'contact:disclose');
+        parent::__construct($request, 'contact:disclose', $parameters);
     }
 
     /**
@@ -30,11 +30,17 @@ class Disclose extends AbstractNode
      */
     protected function handleParameters($parameters = [])
     {
-        if (!isset($parameters['flag']) || empty($parameters['flag'])) {
+        if (!isset($parameters['flag'])) {
             throw new InvalidArgumentException('Missing parameter with a key \'flag\'.');
         }
-        if (!in_array($parameters['flag'], [self::FLAG_HIDE, self::FLAG_SHOW])) {
-            throw new UnexpectedValueException('The value of the parameter \'flag\' must be set to \'0\' or \'1\'.');
+        if (!in_array($parameters['flag'], [self::FLAG_HIDE, self::ALT_FLAG_HIDE, self::FLAG_SHOW, self::ALT_FLAG_SHOW])) {
+            throw new UnexpectedValueException(sprintf(
+                'The value of the parameter with a key \'flag\' must be set to \'%s\', \'%s\', \'%s\' or \'%s\'.',
+                self::FLAG_HIDE,
+                self::ALT_FLAG_HIDE,
+                self::FLAG_SHOW,
+                self::ALT_FLAG_SHOW
+            ));
         }
 
         $this->getNode()->setAttribute('flag', $parameters['flag']);
