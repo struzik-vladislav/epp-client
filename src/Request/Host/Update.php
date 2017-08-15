@@ -168,130 +168,98 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Adding status to the list for adding.
+     * Setting the statuses for adding.
      *
-     * @param string $status valid host status
+     * @param string $statuses array of hosts statuses
      *
      * @return self
      */
-    public function addStatusForAdding($status)
+    public function setStatusesForAdding(array $statuses = [])
     {
-        if (!isset($this->statusesForAdding[$status])) {
-            $this->statusesForAdding[$status] = $status;
-        }
+        $this->statusesForAdding = $statuses;
 
         return $this;
     }
 
     /**
-     * Removing status from the list for adding.
+     * Getting the statuses for adding.
      *
-     * @param string $status valid host status
+     * @return array
+     */
+    public function getStatusesForAdding()
+    {
+        return $this->statusesForAdding;
+    }
+
+    /**
+     * Setting the statuses for removing.
+     *
+     * @param string $statuses array of hosts statuses
      *
      * @return self
      */
-    public function removeStatusForAdding($status)
+    public function setStatusesForRemoving(array $statuses = [])
     {
-        if (isset($this->statusesForAdding[$status])) {
-            unset($this->statusesForAdding[$status]);
-        }
+        $this->statusesForRemoving = $statuses;
 
         return $this;
     }
 
     /**
-     * Adding status to the list for removing.
+     * Getting the statuses for removing.
      *
-     * @param string $status valid host status
+     * @return array
+     */
+    public function getStatusesForRemoving()
+    {
+        return $this->statusesForRemoving;
+    }
+
+    /**
+     * Setting the IP addresses for adding.
+     *
+     * @param string $addresses array of IP addresses
      *
      * @return self
      */
-    public function addStatusForRemoving($status)
+    public function setAddressesForAdding(array $addresses = [])
     {
-        if (!isset($this->statusesForRemoving[$status])) {
-            $this->statusesForRemoving[$status] = $status;
-        }
+        $this->addressesForAdding = $addresses;
 
         return $this;
     }
 
     /**
-     * Removing status from the list for removing.
+     * Getting the IP addresses for adding.
      *
-     * @param string $status valid host status
+     * @return array
+     */
+    public function getAddressesForAdding()
+    {
+        return $this->addressesForAdding;
+    }
+
+    /**
+     * Setting the IP addresses for removing.
+     *
+     * @param string $addresses array of IP addresses
      *
      * @return self
      */
-    public function removeStatusForRemoving($status)
+    public function setAddressesForRemoving(array $addresses = [])
     {
-        if (isset($this->statusesForRemoving[$status])) {
-            unset($this->statusesForRemoving[$status]);
-        }
+        $this->addressesForRemoving = $addresses;
 
         return $this;
     }
 
     /**
-     * Adding an IP to the list for adding.
+     * Getting the IP addresses for removing.
      *
-     * @param string $address valid IP address
-     *
-     * @return self
+     * @return array
      */
-    public function addAddressForAdding($address)
+    public function getAddessesForRemoving()
     {
-        if (!isset($this->addressesForAdding[$address])) {
-            $this->addressesForAdding[$address] = $address;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Removing an IP from the list for adding.
-     *
-     * @param string $address valid IP address
-     *
-     * @return self
-     */
-    public function removeAddressForAdding($address)
-    {
-        if (isset($this->addressesForAdding[$address])) {
-            unset($this->addressesForAdding[$address]);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Adding an IP to the list for removing.
-     *
-     * @param string $address valid IP address
-     *
-     * @return self
-     */
-    public function addAddressForRemoving($address)
-    {
-        if (!isset($this->addressesForRemoving[$address])) {
-            $this->addressesForRemoving[$address] = $address;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Removing an IP from the list for removing.
-     *
-     * @param string $address valid IP address
-     *
-     * @return self
-     */
-    public function removeAddressForRemoving($address)
-    {
-        if (isset($this->addressesForRemoving[$address])) {
-            unset($this->addressesForRemoving[$address]);
-        }
-
-        return $this;
+        return $this->addressesForRemoving;
     }
 }

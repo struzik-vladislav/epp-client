@@ -25,10 +25,12 @@ class PostalCode extends AbstractNode
      */
     protected function handleParameters($parameters = [])
     {
-        if (!isset($parameters['postal-code']) || empty($parameters['postal-code'])) {
+        if (!isset($parameters['postal-code'])) {
             throw new InvalidArgumentException('Missing parameter with a key \'postal-code\'.');
         }
 
-        $this->getNode()->nodeValue = $parameters['postal-code'];
+        if (!empty($parameters['postal-code'])) {
+            $this->getNode()->nodeValue = $parameters['postal-code'];
+        }
     }
 }

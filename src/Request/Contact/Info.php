@@ -46,9 +46,6 @@ class Info extends AbstractRequest
         $contactId = new Identifier($this, ['identifier' => $this->identifier]);
         $contactInfo->append($contactId);
 
-        $transaction = new TransactionId($this);
-        $command->append($transaction);
-
         if ($this->getPassword() !== null) {
             $contactAuthorization = new AuthorizationInfo($this);
             $contactInfo->append($contactAuthorization);
@@ -56,6 +53,9 @@ class Info extends AbstractRequest
             $contactPassword = new Password($this, ['password' => $this->getPassword()]);
             $contactAuthorization->append($contactPassword);
         }
+
+        $transaction = new TransactionId($this);
+        $command->append($transaction);
     }
 
     /**

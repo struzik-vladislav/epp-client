@@ -62,7 +62,7 @@ class Status extends AbstractNode
      */
     protected function handleParameters($parameters = [])
     {
-        if (!isset($parameters['status']) || empty($parameters['status'])) {
+        if (!isset($parameters['status'])) {
             throw new InvalidArgumentException('Missing parameter with a key \'status\'.');
         }
 

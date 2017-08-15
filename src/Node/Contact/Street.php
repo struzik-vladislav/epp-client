@@ -25,10 +25,12 @@ class Street extends AbstractNode
      */
     protected function handleParameters($parameters = [])
     {
-        if (!isset($parameters['street']) || empty($parameters['street'])) {
+        if (!isset($parameters['street'])) {
             throw new InvalidArgumentException('Missing parameter with a key \'street\'.');
         }
 
-        $this->getNode()->nodeValue = $parameters['street'];
+        if (!empty($parameters['street'])) {
+            $this->getNode()->nodeValue = $parameters['street'];
+        }
     }
 }

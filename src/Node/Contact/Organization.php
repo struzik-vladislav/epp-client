@@ -25,10 +25,12 @@ class Organization extends AbstractNode
      */
     protected function handleParameters($parameters = [])
     {
-        if (!isset($parameters['organization']) || empty($parameters['organization'])) {
+        if (!isset($parameters['organization'])) {
             throw new InvalidArgumentException('Missing parameter with a key \'organization\'.');
         }
 
-        $this->getNode()->nodeValue = $parameters['organization'];
+        if (!empty($parameters['organization'])) {
+            $this->getNode()->nodeValue = $parameters['organization'];
+        }
     }
 }

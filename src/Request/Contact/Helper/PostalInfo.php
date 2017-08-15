@@ -45,11 +45,11 @@ class PostalInfo
     /**
      * Setting the name of the individual or role represented by the contact.
      *
-     * @param string $name contact name
+     * @param string|null $name contact name
      *
      * @return self
      */
-    public function setName($name)
+    public function setName($name = null)
     {
         $this->name = $name;
 
@@ -69,7 +69,7 @@ class PostalInfo
     /**
      * Setting the name of the organization.
      *
-     * @param string $organization the name of the organization
+     * @param string|null $organization the name of the organization
      *
      * @return self
      */
@@ -117,11 +117,11 @@ class PostalInfo
     /**
      * Setting the contact's city.
      *
-     * @param string $city city
+     * @param string|null $city city
      *
      * @return self
      */
-    public function setCity($city)
+    public function setCity($city = null)
     {
         $this->city = $city;
 
@@ -141,7 +141,7 @@ class PostalInfo
     /**
      * Setting the contact's state or province.
      *
-     * @param string $state state or province
+     * @param string|null $state state or province
      *
      * @return self
      */
@@ -165,7 +165,7 @@ class PostalInfo
     /**
      * Setting the contact's postal code.
      *
-     * @param string $postalCode postal code
+     * @param string|null $postalCode postal code
      *
      * @return self
      */
@@ -189,11 +189,11 @@ class PostalInfo
     /**
      * Setting the contact's country code.
      *
-     * @param string $countryCode country code
+     * @param string|null $countryCode country code
      *
      * @return self
      */
-    public function setCountryCode($countryCode)
+    public function setCountryCode($countryCode = null)
     {
         $this->countryCode = $countryCode;
 

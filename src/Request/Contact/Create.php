@@ -96,15 +96,12 @@ class Create extends AbstractRequest
         $contactId = new Identifier($this, ['identifier' => $this->identifier]);
         $contactCreate->append($contactId);
 
-        if (count(array_filter($this->postalInfo)) === 0) {
-            throw new UnexpectedValueException('The contact object must contain one or two object with postal-address information');
+        $postalInfoArray = array_filter($this->postalInfo);
+        if (count($postalInfoArray) === 0) {
+            throw new UnexpectedValueException('The contact object must contain one or two object with postal-address information.');
         }
 
-        foreach ($this->postalInfo as $postalInfoType => $postalInfoObject) {
-            if (!($postalInfoObject instanceof PostalInfoHelper)) {
-                continue;
-            }
-
+        foreach ($postalInfoArray as $postalInfoType => $postalInfoObject) {
             $postalInfo = new PostalInfo($this, ['type' => $postalInfoType]);
             $contactCreate->append($postalInfo);
 
