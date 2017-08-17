@@ -5,8 +5,25 @@ namespace Struzik\EPPClient\Response;
 /**
  * Extending the basic implementation for most response objects.
  */
-abstract class AbstractCommonResponse extends AbstractResponse
+class CommonResponse extends AbstractResponse
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function isSuccess()
+    {
+        return in_array(
+            $this->getResultCode(),
+            [
+                self::RC_SUCCESS,
+                self::RC_SUCCESS_ACTION_PENDING,
+                self::RC_SUCCESS_NO_MESSAGES,
+                self::RC_SUCCESS_ACK_TO_DEQUEUE,
+                self::RC_SUCCESS_ENDING_SESSION,
+            ]
+        );
+    }
+
     /**
      * A four-digit, decimal number that describes the success or failure of the command.
      *

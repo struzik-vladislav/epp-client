@@ -2,14 +2,14 @@
 
 namespace Struzik\EPPClient\Response\Contact;
 
-use Struzik\EPPClient\Response\AbstractCommonResponse;
+use Struzik\EPPClient\Response\CommonResponse;
 use Struzik\EPPClient\Exception\UnexpectedValueException;
 use XPath;
 
 /**
  * Object representation of the response of contact checking command.
  */
-class Check extends AbstractCommonResponse
+class Check extends CommonResponse
 {
     /**
      * {@inheritdoc}

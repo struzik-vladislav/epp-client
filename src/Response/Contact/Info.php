@@ -2,7 +2,7 @@
 
 namespace Struzik\EPPClient\Response\Contact;
 
-use Struzik\EPPClient\Response\AbstractCommonResponse;
+use Struzik\EPPClient\Response\CommonResponse;
 use Struzik\EPPClient\Node\Contact\PostalInfo;
 use Struzik\EPPClient\Response\Contact\Helper\Disclose;
 use Struzik\EPPClient\Response\Contact\Helper\PostalInfo as PostalInfoHelper;
@@ -11,7 +11,7 @@ use Struzik\EPPClient\Exception\UnexpectedValueException;
 /**
  * Object representation of the response of contact information command.
  */
-class Info extends AbstractCommonResponse
+class Info extends CommonResponse
 {
     /**
      * {@inheritdoc}

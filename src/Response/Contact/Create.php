@@ -2,12 +2,12 @@
 
 namespace Struzik\EPPClient\Response\Contact;
 
-use Struzik\EPPClient\Response\AbstractCommonResponse;
+use Struzik\EPPClient\Response\CommonResponse;
 
 /**
  * Object representation of the response of contact creating command.
  */
-class Create extends AbstractCommonResponse
+class Create extends CommonResponse
 {
     /**
      * {@inheritdoc}

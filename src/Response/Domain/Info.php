@@ -2,13 +2,13 @@
 
 namespace Struzik\EPPClient\Response\Domain;
 
-use Struzik\EPPClient\Response\AbstractCommonResponse;
+use Struzik\EPPClient\Response\CommonResponse;
 use Struzik\EPPClient\Node\Common\Contact;
 
 /**
  * Object representation of the response of domain information command.
  */
-class Info extends AbstractCommonResponse
+class Info extends CommonResponse
 {
     /**
      * {@inheritdoc}

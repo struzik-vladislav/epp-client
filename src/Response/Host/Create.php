@@ -2,12 +2,12 @@
 
 namespace Struzik\EPPClient\Response\Host;
 
-use Struzik\EPPClient\Response\AbstractCommonResponse;
+use Struzik\EPPClient\Response\CommonResponse;
 
 /**
  * Object representation of the response of host creating command.
  */
-class Create extends AbstractCommonResponse
+class Create extends CommonResponse
 {
     /**
      * {@inheritdoc}

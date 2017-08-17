@@ -2,12 +2,12 @@
 
 namespace Struzik\EPPClient\Response\Session;
 
-use Struzik\EPPClient\Response\AbstractCommonResponse;
+use Struzik\EPPClient\Response\CommonResponse;
 
 /**
  * Object representation of the response of logout command.
  */
-class Logout extends AbstractCommonResponse
+class Logout extends CommonResponse
 {
     /**
      * {@inheritdoc}
