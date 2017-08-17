@@ -9,11 +9,4 @@ use Struzik\EPPClient\Response\CommonResponse;
  */
 class Delete extends CommonResponse
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function isSuccess()
-    {
-        return in_array($this->getResultCode(), [self::RC_SUCCESS, self::RC_SUCCESS_ACTION_PENDING]);
-    }
 }

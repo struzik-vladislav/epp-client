@@ -11,14 +11,6 @@ use Struzik\EPPClient\Node\Common\Contact;
 class Info extends CommonResponse
 {
     /**
-     * {@inheritdoc}
-     */
-    public function isSuccess()
-    {
-        return $this->getResultCode() === self::RC_SUCCESS;
-    }
-
-    /**
      * Fully qualified name of the domain object.
      *
      * @return string

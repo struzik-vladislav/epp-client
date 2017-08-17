@@ -12,14 +12,6 @@ use XPath;
 class Check extends CommonResponse
 {
     /**
-     * {@inheritdoc}
-     */
-    public function isSuccess()
-    {
-        return $this->getResultCode() === self::RC_SUCCESS;
-    }
-
-    /**
      * Contact is available for creating.
      *
      * @param string $contactId contact identifier

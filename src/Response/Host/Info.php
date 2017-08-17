@@ -10,14 +10,6 @@ use Struzik\EPPClient\Response\CommonResponse;
 class Info extends CommonResponse
 {
     /**
-     * {@inheritdoc}
-     */
-    public function isSuccess()
-    {
-        return $this->getResultCode() === self::RC_SUCCESS;
-    }
-
-    /**
      * Fully qualified name of the host object.
      *
      * @return string

@@ -14,14 +14,6 @@ use Struzik\EPPClient\Exception\UnexpectedValueException;
 class Info extends CommonResponse
 {
     /**
-     * {@inheritdoc}
-     */
-    public function isSuccess()
-    {
-        return $this->getResultCode() === self::RC_SUCCESS;
-    }
-
-    /**
      * Getting the identifier of the contact.
      *
      * @return string

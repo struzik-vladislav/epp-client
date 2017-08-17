@@ -12,14 +12,6 @@ use XPath;
 class Check extends CommonResponse
 {
     /**
-     * {@inheritdoc}
-     */
-    public function isSuccess()
-    {
-        return $this->getResultCode() === self::RC_SUCCESS;
-    }
-
-    /**
      * Host is available for creating.
      *
      * @param $host fully qualified name of the host object

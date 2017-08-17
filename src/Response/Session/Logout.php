@@ -9,11 +9,4 @@ use Struzik\EPPClient\Response\CommonResponse;
  */
 class Logout extends CommonResponse
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function isSuccess()
-    {
-        return $this->getResultCode() === self::RC_SUCCESS_ENDING_SESSION;
-    }
 }

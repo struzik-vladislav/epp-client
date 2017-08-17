@@ -10,14 +10,6 @@ use Struzik\EPPClient\Response\CommonResponse;
 class Create extends CommonResponse
 {
     /**
-     * {@inheritdoc}
-     */
-    public function isSuccess()
-    {
-        return $this->getResultCode() === self::RC_SUCCESS;
-    }
-
-    /**
      * Getting the identifier of the contact.
      *
      * @return string
