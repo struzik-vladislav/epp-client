@@ -3,6 +3,10 @@
 namespace Struzik\EPPClient\Response;
 
 use XPath\DOMXPath;
+use Struzik\ErrorHandler\ErrorHandler;
+use Struzik\ErrorHandler\Processor\IntoExceptionProcessor;
+use Struzik\ErrorHandler\Exception\ErrorException;
+use Struzik\EPPClient\Exception\RuntimeException;
 
 /**
  * Basic implementation of the response object.
@@ -28,9 +32,19 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
      */
     public function __construct($xml)
     {
-        $this->preserveWhiteSpace = false;
-        $this->loadXML($xml);
-        $this->initDOMXPath();
+        try {
+            $errorHandler = (new ErrorHandler())
+                ->pushProcessor((new IntoExceptionProcessor())->setErrorTypes(E_ALL));
+            $errorHandler->set();
+
+            $this->preserveWhiteSpace = false;
+            $this->loadXML($xml);
+            $this->initDOMXPath();
+
+            $errorHandler->restore();
+        } catch (ErrorException $e) {
+            throw new RuntimeException('Error has occurred on building response object. See previous exception.', 0, $e);
+        }
     }
 
     /**

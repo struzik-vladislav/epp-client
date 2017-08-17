@@ -116,16 +116,6 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Getting the value of the login parameter.
-     *
-     * @return string
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
-
-    /**
      * Setting the value of the login parameter. Required.
      *
      * @param string $login
@@ -140,13 +130,13 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Getting the value of the password parameter.
+     * Getting the value of the login parameter.
      *
      * @return string
      */
-    public function getPassword()
+    public function getLogin()
     {
-        return $this->password;
+        return $this->login;
     }
 
     /**
@@ -164,13 +154,13 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Getting the value of the new password parameter.
+     * Getting the value of the password parameter.
      *
      * @return string
      */
-    public function getNewPassword()
+    public function getPassword()
     {
-        return $this->newPassword;
+        return $this->password;
     }
 
     /**
@@ -188,13 +178,13 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Getting the value of the version parameter.
+     * Getting the value of the new password parameter.
      *
      * @return string
      */
-    public function getVersion()
+    public function getNewPassword()
     {
-        return $this->version;
+        return $this->newPassword;
     }
 
     /**
@@ -212,13 +202,13 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Getting the value of the language parameter.
+     * Getting the value of the version parameter.
      *
      * @return string
      */
-    public function getLanguage()
+    public function getVersion()
     {
-        return $this->language;
+        return $this->version;
     }
 
     /**
@@ -233,5 +223,15 @@ class Login extends AbstractRequest
         $this->language = $language;
 
         return $this;
+    }
+
+    /**
+     * Getting the value of the language parameter.
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
     }
 }

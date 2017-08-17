@@ -52,16 +52,6 @@ class Delete extends AbstractRequest
     }
 
     /**
-     * Getting the name of the host.
-     *
-     * @return string
-     */
-    public function getHost()
-    {
-        return $this->host;
-    }
-
-    /**
      * Setting the name of the host.
      *
      * @param string $host fully qualified name of the host object
@@ -73,5 +63,15 @@ class Delete extends AbstractRequest
         $this->host = $host;
 
         return $this;
+    }
+
+    /**
+     * Getting the name of the host.
+     *
+     * @return string
+     */
+    public function getHost()
+    {
+        return $this->host;
     }
 }

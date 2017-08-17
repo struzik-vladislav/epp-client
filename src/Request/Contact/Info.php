@@ -46,11 +46,11 @@ class Info extends AbstractRequest
         $contactId = new Identifier($this, ['identifier' => $this->identifier]);
         $contactInfo->append($contactId);
 
-        if ($this->getPassword() !== null) {
+        if ($this->password !== null) {
             $contactAuthorization = new AuthorizationInfo($this);
             $contactInfo->append($contactAuthorization);
 
-            $contactPassword = new Password($this, ['password' => $this->getPassword()]);
+            $contactPassword = new Password($this, ['password' => $this->password]);
             $contactAuthorization->append($contactPassword);
         }
 
@@ -64,16 +64,6 @@ class Info extends AbstractRequest
     public function getResponseClass()
     {
         return InfoResponse::class;
-    }
-
-    /**
-     * Getting the identifier of the contact.
-     *
-     * @return string
-     */
-    public function getIdentifier()
-    {
-        return $this->identifier;
     }
 
     /**
@@ -91,13 +81,13 @@ class Info extends AbstractRequest
     }
 
     /**
-     * Getting the password of the contact.
+     * Getting the identifier of the contact.
      *
      * @return string
      */
-    public function getPassword()
+    public function getIdentifier()
     {
-        return $this->password;
+        return $this->identifier;
     }
 
     /**
@@ -112,5 +102,15 @@ class Info extends AbstractRequest
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * Getting the password of the contact.
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 }

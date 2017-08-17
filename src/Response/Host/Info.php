@@ -34,7 +34,7 @@ class Info extends AbstractCommonResponse
      *
      * @return string
      */
-    public function getRepositoryId()
+    public function getROIdentifier()
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/host:infData/host:roid');
 

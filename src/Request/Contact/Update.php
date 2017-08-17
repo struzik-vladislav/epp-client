@@ -280,16 +280,6 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Getting the identifier of the contact.
-     *
-     * @return string
-     */
-    public function getIdentifier()
-    {
-        return $this->identifier;
-    }
-
-    /**
      * Setting the identifier of the contact.
      *
      * @param string $identifier contact identifier
@@ -301,6 +291,16 @@ class Update extends AbstractRequest
         $this->identifier = $identifier;
 
         return $this;
+    }
+
+    /**
+     * Getting the identifier of the contact.
+     *
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
     }
 
     /**

@@ -52,16 +52,6 @@ class Delete extends AbstractRequest
     }
 
     /**
-     * Getting the identifier of the contact.
-     *
-     * @return string
-     */
-    public function getIdentifier()
-    {
-        return $this->identifier;
-    }
-
-    /**
      * Setting the identifier of the contact.
      *
      * @param string $identifier contact identifier
@@ -73,5 +63,15 @@ class Delete extends AbstractRequest
         $this->identifier = $identifier;
 
         return $this;
+    }
+
+    /**
+     * Getting the identifier of the contact.
+     *
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
     }
 }

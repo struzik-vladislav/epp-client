@@ -120,16 +120,6 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Getting the name of the host.
-     *
-     * @return string
-     */
-    public function getHost()
-    {
-        return $this->host;
-    }
-
-    /**
      * Setting the name of the host.
      *
      * @param string $host fully qualified name of the host object
@@ -144,13 +134,13 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Getting the new name of the host.
+     * Getting the name of the host.
      *
      * @return string
      */
-    public function getNewHost()
+    public function getHost()
     {
-        return $this->newHost;
+        return $this->host;
     }
 
     /**
@@ -165,6 +155,16 @@ class Update extends AbstractRequest
         $this->newHost = $newHost;
 
         return $this;
+    }
+
+    /**
+     * Getting the new name of the host.
+     *
+     * @return string
+     */
+    public function getNewHost()
+    {
+        return $this->newHost;
     }
 
     /**
