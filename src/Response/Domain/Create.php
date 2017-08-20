@@ -45,7 +45,7 @@ class Create extends CommonResponse
      *
      * @return \DateTime|string|null
      */
-    public function getExpireDate($format = null)
+    public function getExpiryDate($format = null)
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:creData/domain:exDate');
         if ($node === null) {

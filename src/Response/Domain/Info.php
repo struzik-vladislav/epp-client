@@ -175,7 +175,7 @@ class Info extends CommonResponse
      *
      * @return \DateTime|string|null
      */
-    public function getExpireDate($format = null)
+    public function getExpiryDate($format = null)
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:infData/domain:exDate');
         if ($node === null) {
