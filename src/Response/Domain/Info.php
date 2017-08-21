@@ -39,7 +39,7 @@ class Info extends CommonResponse
      *
      * @return \Generator
      */
-    public function getStatusList()
+    public function getStatuses()
     {
         $nodes = $this->get('//epp:epp/epp:response/epp:resData/domain:infData/domain:status');
 
@@ -57,7 +57,7 @@ class Info extends CommonResponse
      */
     public function statusExist($status)
     {
-        $generator = $this->getStatusList();
+        $generator = $this->getStatuses();
         $list = iterator_to_array($generator);
 
         return in_array($status, $list);
@@ -83,7 +83,7 @@ class Info extends CommonResponse
      *
      * @return \Generator
      */
-    public function getContactList()
+    public function getContacts()
     {
         $nodes = $this->get('//epp:epp/epp:response/epp:resData/domain:infData/domain:contact');
 
@@ -97,7 +97,7 @@ class Info extends CommonResponse
      *
      * @return \Generator
      */
-    public function getNameserverList()
+    public function getNameservers()
     {
         $nodes = $this->get('//epp:epp/epp:response/epp:resData/domain:infData/domain:ns/domain:hostObj');
 
@@ -111,7 +111,7 @@ class Info extends CommonResponse
      *
      * @return \Generator
      */
-    public function getHostList()
+    public function getHosts()
     {
         $nodes = $this->get('//epp:epp/epp:response/epp:resData/domain:infData/domain:host');
 

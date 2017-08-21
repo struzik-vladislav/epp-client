@@ -87,34 +87,26 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Adding an IP to the address list.
+     * Setting the addresses of the host object.
      *
-     * @param string $address valid IP address
+     * @param array $addresses IP addresses
      *
      * @return self
      */
-    public function addAddress($address)
+    public function setAddresses(array $addresses = [])
     {
-        if (!isset($this->addresses[$address])) {
-            $this->addresses[$address] = $address;
-        }
+        $this->addresses = $addresses;
 
         return $this;
     }
 
     /**
-     * Removing an IP from the address list.
+     * Getting the addresses of the host object.
      *
-     * @param string $address valid IP address
-     *
-     * @return self
+     * @return array
      */
-    public function removeAddress($address)
+    public function getAddresses()
     {
-        if (isset($this->addresses[$address])) {
-            unset($this->addresses[$address]);
-        }
-
-        return $this;
+        return $this->addresses;
     }
 }

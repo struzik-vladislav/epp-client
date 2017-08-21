@@ -42,7 +42,7 @@ class Info extends CommonResponse
      *
      * @return \Generator
      */
-    public function getStatusList()
+    public function getStatuses()
     {
         $nodes = $this->get('//epp:epp/epp:response/epp:resData/contact:infData/contact:status');
 
@@ -60,7 +60,7 @@ class Info extends CommonResponse
      */
     public function statusExist($status)
     {
-        $generator = $this->getStatusList();
+        $generator = $this->getStatuses();
         $list = iterator_to_array($generator);
 
         return in_array($status, $list);

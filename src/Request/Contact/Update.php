@@ -59,12 +59,9 @@ class Update extends AbstractRequest
     private $statusesForRemoving = [];
 
     /**
-     * @var array
+     * @var PostalInfoHelper[]
      */
-    private $postalInfo = [
-        PostalInfo::TYPE_INT => null,
-        PostalInfo::TYPE_LOC => null,
-    ];
+    private $postalInformations = [];
 
     /**
      * @var string
@@ -130,9 +127,7 @@ class Update extends AbstractRequest
             }
         }
 
-        $postalInfoArray = array_filter($this->postalInfo);
-
-        if (count($postalInfoArray) > 0
+        if (count($this->postalInformations) > 0
             || $this->voice !== null
             || $this->fax !== null
             || $this->email !== null
@@ -142,7 +137,7 @@ class Update extends AbstractRequest
             $contactChange = new Change($this);
             $contactUpdate->append($contactChange);
 
-            foreach ($postalInfoArray as $postalInfoType => $postalInfoObject) {
+            foreach ($this->postalInformations as $postalInfoType => $postalInfoObject) {
                 $postalInfo = new PostalInfo($this, ['type' => $postalInfoType]);
                 $contactChange->append($postalInfo);
 
@@ -352,46 +347,27 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the postal-address information by type.
+     * Setting the postal-address informations with types.
      *
-     * @param string           $type       type of the postal-address information
-     * @param PostalInfoHelper $postalInfo the postal-address information
+     * @param PostalInfoHelper[] $postalInfo the postal-address informations with types
      *
      * @return self
      */
-    public function setPostalInfoByType($type, PostalInfoHelper $postalInfo = null)
+    public function setPostalInformations(array $postalInformations = [])
     {
-        if (!in_array($type, [PostalInfo::TYPE_INT, PostalInfo::TYPE_LOC])) {
-            throw new UnexpectedValueException(sprintf(
-                'The value of the parameter \'type\' must be set to \'%s\' or \'%s\'.',
-                PostalInfo::TYPE_INT,
-                PostalInfo::TYPE_LOC
-            ));
-        }
-
-        $this->postalInfo[$type] = $postalInfo;
+        $this->postalInformations = $postalInformations;
 
         return $this;
     }
 
     /**
-     * Getting the postal-address information by type.
+     * Getting the postal-address informations with types.
      *
-     * @param string $type type of the postal-address information
-     *
-     * @return PostalInfoHelper|null
+     * @return PostalInfoHelper[]
      */
-    public function getPostalInfoByType($type)
+    public function getPostalInformations()
     {
-        if (!in_array($type, [PostalInfo::TYPE_INT, PostalInfo::TYPE_LOC])) {
-            throw new UnexpectedValueException(sprintf(
-                'The value of the parameter \'type\' must be set to \'%s\' or \'%s\'.',
-                PostalInfo::TYPE_INT,
-                PostalInfo::TYPE_LOC
-            ));
-        }
-
-        return isset($this->postalInfo[$type]) ? $this->postalInfo[$type] : null;
+        return $this->postalInformations;
     }
 
     /**

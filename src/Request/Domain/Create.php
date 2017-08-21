@@ -281,15 +281,13 @@ class Create extends AbstractRequest
     /**
      * Setting the identifiers for other contact objects to be associated with the domain object.
      *
-     * @param string $type    type of the contact
-     * @param string $contact identifier of the contact
+     * @param array $contacts identifiers of the contacts with types
      *
      * @return self
      */
-    public function setContactByType($type, $contact = null)
+    public function setContacts(array $contacts = [])
     {
-        $this->contacts[$type] = $contact;
-        $this->contacts = array_filter($this->contacts);
+        $this->contacts = $contacts;
 
         return $this;
     }
@@ -297,13 +295,11 @@ class Create extends AbstractRequest
     /**
      * Getting the identifiers for other contact objects to be associated with the domain object.
      *
-     * @param string $type type of the contact
-     *
-     * @return string|null
+     * @return array
      */
-    public function getContactByType($type)
+    public function getContacts()
     {
-        return isset($this->contacts[$type]) ? $this->contacts[$type] : null;
+        return $this->contacts;
     }
 
     /**
