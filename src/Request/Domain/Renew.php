@@ -125,7 +125,8 @@ class Renew extends AbstractRequest
     }
 
     /**
-     * Setting the initial registration period of the domain object.
+     * Setting the number of units to be added to the registration period
+     * of the domain object.
      *
      * @param int $period registration period
      *
@@ -139,7 +140,8 @@ class Renew extends AbstractRequest
     }
 
     /**
-     * Getting the initial registration period of the domain object.
+     * Getting the number of units to be added to the registration period
+     * of the domain object.
      *
      * @return int
      */
@@ -149,7 +151,7 @@ class Renew extends AbstractRequest
     }
 
     /**
-     * Setting the unit of the initial registration period.
+     * Setting the unit of the period.
      *
      * @param string $unit constant of the unit
      *
@@ -163,7 +165,7 @@ class Renew extends AbstractRequest
     }
 
     /**
-     * Getting the unit of the initial registration period.
+     * Getting the unit of the period.
      *
      * @return string
      */

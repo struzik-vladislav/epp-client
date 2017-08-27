@@ -32,8 +32,8 @@ class Period extends AbstractNode
         if (!isset($parameters['period'])) {
             throw new InvalidArgumentException('Missing parameter with a key \'period\'.');
         }
-        if (empty($parameters['period']) || !preg_match('/^\d+$/ui', $parameters['period'])) {
-            throw new UnexpectedValueException('The value of the parameter with a key \'period\' must be integer number.');
+        if (!is_int($parameters['period']) || $parameters['period'] < 0) {
+            throw new UnexpectedValueException('The value of the parameter with a key \'period\' must be integer number and great that or equal zero.');
         }
 
         $this->getNode()->nodeValue = $parameters['period'];

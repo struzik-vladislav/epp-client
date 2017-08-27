@@ -30,5 +30,9 @@ class Password extends AbstractNode
         }
 
         $this->getNode()->nodeValue = $parameters['password'];
+
+        if (isset($parameters['object-id']) && !empty($parameters['object-id'])) {
+            $this->getNode()->setAttribute('roid', $parameters['object-id']);
+        }
     }
 }
