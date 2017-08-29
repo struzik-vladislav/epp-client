@@ -139,7 +139,7 @@ class TransferQuery extends AbstractRequest
     /**
      * Getting registry object identifier associated with the password.
      *
-     * @return string
+     * @return string|null
      */
     public function getPasswordROIdentifier()
     {

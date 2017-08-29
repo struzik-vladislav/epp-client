@@ -99,7 +99,7 @@ class TransferReject extends AbstractRequest
     /**
      * Setting the password.
      *
-     * @param string|null $password associated authorization information
+     * @param string $password associated authorization information
      *
      * @return self
      */
@@ -113,7 +113,7 @@ class TransferReject extends AbstractRequest
     /**
      * Getting the password.
      *
-     * @return string|null
+     * @return string
      */
     public function getPassword()
     {
@@ -137,7 +137,7 @@ class TransferReject extends AbstractRequest
     /**
      * Getting registry object identifier associated with the password.
      *
-     * @return string
+     * @return string|null
      */
     public function getPasswordROIdentifier()
     {
