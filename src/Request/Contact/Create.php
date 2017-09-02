@@ -229,7 +229,7 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the identifier of the contact.
+     * Setting the identifier of the contact. REQUIRED.
      *
      * @param string $identifier contact identifier
      *
@@ -253,7 +253,7 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the postal-address informations with types.
+     * Setting the postal-address informations with types. REQUIRED.
      *
      * @param PostalInfoHelper[] $postalInfo the postal-address informations with types
      *
@@ -277,7 +277,7 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the contact's voice telephone number.
+     * Setting the contact's voice telephone number. OPTIONAL.
      *
      * @param string|null $voice voice telephone number
      *
@@ -293,7 +293,7 @@ class Create extends AbstractRequest
     /**
      * Getting the contact's voice telephone number.
      *
-     * @return string
+     * @return string|null
      */
     public function getVoice()
     {
@@ -301,7 +301,7 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the contact's facsimile telephone number.
+     * Setting the contact's facsimile telephone number. OPTIONAL.
      *
      * @param string|null $fax facsimile telephone number
      *
@@ -317,7 +317,7 @@ class Create extends AbstractRequest
     /**
      * Getting the contact's facsimile telephone number.
      *
-     * @return string
+     * @return string|null
      */
     public function getFax()
     {
@@ -325,7 +325,7 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the contact's email address.
+     * Setting the contact's email address. REQUIRED.
      *
      * @param string $email email address
      *
@@ -349,13 +349,13 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the password of the contact.
+     * Setting the password of the contact. REQUIRED.
      *
-     * @param string|null $password authorization information associated with the contact object
+     * @param string $password authorization information associated with the contact object
      *
      * @return self
      */
-    public function setPassword($password = null)
+    public function setPassword($password)
     {
         $this->password = $password;
 
@@ -375,7 +375,7 @@ class Create extends AbstractRequest
     /**
      * Setting the contact's disclosure preferences.
      *
-     * @param DiscloseHelper $disclose disclosure preferences
+     * @param DiscloseHelper|null $disclose disclosure preferences
      *
      * @return self
      */

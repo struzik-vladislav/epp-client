@@ -120,7 +120,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the name of the host.
+     * Setting the name of the host. REQUIRED.
      *
      * @param string $host fully qualified name of the host object
      *
@@ -144,13 +144,13 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the new name of the host.
+     * Setting the new name of the host. OPTIONAL.
      *
-     * @param string $newHost fully qualified name of the host object
+     * @param string|null $newHost fully qualified name of the host object
      *
      * @return self
      */
-    public function setNewHost($newHost)
+    public function setNewHost($newHost = null)
     {
         $this->newHost = $newHost;
 
@@ -160,7 +160,7 @@ class Update extends AbstractRequest
     /**
      * Getting the new name of the host.
      *
-     * @return string
+     * @return string|null
      */
     public function getNewHost()
     {
@@ -168,9 +168,9 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the statuses for adding.
+     * Setting the statuses for adding. OPTIONAL.
      *
-     * @param string $statuses array of hosts statuses
+     * @param array $statuses array of hosts statuses
      *
      * @return self
      */
@@ -192,9 +192,9 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the statuses for removing.
+     * Setting the statuses for removing. OPTIONAL.
      *
-     * @param string $statuses array of hosts statuses
+     * @param array $statuses array of hosts statuses
      *
      * @return self
      */
@@ -216,9 +216,9 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the IP addresses for adding.
+     * Setting the IP addresses for adding. OPTIONAL.
      *
-     * @param string $addresses array of IP addresses
+     * @param array $addresses array of IP addresses
      *
      * @return self
      */
@@ -240,9 +240,9 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the IP addresses for removing.
+     * Setting the IP addresses for removing. OPTIONAL.
      *
-     * @param string $addresses array of IP addresses
+     * @param array $addresses array of IP addresses
      *
      * @return self
      */

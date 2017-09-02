@@ -67,7 +67,7 @@ class Info extends AbstractRequest
     }
 
     /**
-     * Setting the identifier of the contact.
+     * Setting the identifier of the contact. REQUIRED.
      *
      * @param string $identifier contact identifier
      *
@@ -91,7 +91,7 @@ class Info extends AbstractRequest
     }
 
     /**
-     * Setting the password of the contact.
+     * Setting the password of the contact. OPTIONAL.
      *
      * @param string|null $password authorization information associated with the contact object
      *

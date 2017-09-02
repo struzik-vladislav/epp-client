@@ -275,7 +275,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the identifier of the contact.
+     * Setting the identifier of the contact. REQUIRED.
      *
      * @param string $identifier contact identifier
      *
@@ -299,9 +299,9 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the statuses for adding.
+     * Setting the statuses for adding. OPTIONAL.
      *
-     * @param string $statuses array of contact's statuses
+     * @param array $statuses array of contact's statuses
      *
      * @return self
      */
@@ -323,9 +323,9 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the statuses for removing.
+     * Setting the statuses for removing. OPTIONAL.
      *
-     * @param string $statuses array of contact's statuses
+     * @param array $statuses array of contact's statuses
      *
      * @return self
      */
@@ -347,7 +347,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the postal-address informations with types.
+     * Setting the postal-address informations with types. OPTIONAL.
      *
      * @param PostalInfoHelper[] $postalInfo the postal-address informations with types
      *
@@ -371,7 +371,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the new contact's voice telephone number.
+     * Setting the new contact's voice telephone number. OPTIONAL.
      *
      * @param string|null $voice voice telephone number
      *
@@ -387,7 +387,7 @@ class Update extends AbstractRequest
     /**
      * Getting the new contact's voice telephone number.
      *
-     * @return string
+     * @return string|null
      */
     public function getVoice()
     {
@@ -395,7 +395,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the new contact's facsimile telephone number.
+     * Setting the new contact's facsimile telephone number. OPTIONAL.
      *
      * @param string|null $fax facsimile telephone number
      *
@@ -411,7 +411,7 @@ class Update extends AbstractRequest
     /**
      * Getting the new contact's facsimile telephone number.
      *
-     * @return string
+     * @return string|null
      */
     public function getFax()
     {
@@ -419,7 +419,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the new contact's email address.
+     * Setting the new contact's email address. OPTIONAL.
      *
      * @param string|null $email email address
      *
@@ -435,7 +435,7 @@ class Update extends AbstractRequest
     /**
      * Getting the new contact's email address.
      *
-     * @return string
+     * @return string|null
      */
     public function getEmail()
     {
@@ -443,7 +443,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the new password of the contact.
+     * Setting the new password of the contact. OPTIONAL.
      *
      * @param string|null $password authorization information associated with the contact object
      *
@@ -459,7 +459,7 @@ class Update extends AbstractRequest
     /**
      * Getting the new password of the contact.
      *
-     * @return string
+     * @return string|null
      */
     public function getPassword()
     {
@@ -467,9 +467,9 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the new contact's disclosure preferences.
+     * Setting the new contact's disclosure preferences. OPTIONAL.
      *
-     * @param DiscloseHelper $disclose disclosure preferences
+     * @param DiscloseHelper|null $disclose disclosure preferences
      *
      * @return self
      */

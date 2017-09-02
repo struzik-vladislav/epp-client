@@ -52,7 +52,7 @@ class Delete extends AbstractRequest
     }
 
     /**
-     * Setting the name of the host.
+     * Setting the name of the host. REQUIRED.
      *
      * @param string $host fully qualified name of the host object
      *

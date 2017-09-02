@@ -67,7 +67,7 @@ class TransferQuery extends AbstractRequest
     }
 
     /**
-     * Setting the identifier of the contact.
+     * Setting the identifier of the contact. REQUIRED.
      *
      * @param string $identifier contact identifier
      *
@@ -91,7 +91,7 @@ class TransferQuery extends AbstractRequest
     }
 
     /**
-     * Setting the password.
+     * Setting the password. OPTIONAL.
      *
      * @param string|null $password associated authorization information
      *

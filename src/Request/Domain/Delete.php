@@ -52,17 +52,7 @@ class Delete extends AbstractRequest
     }
 
     /**
-     * Getting the name of the domain.
-     *
-     * @return string
-     */
-    public function getDomain()
-    {
-        return $this->domain;
-    }
-
-    /**
-     * Setting the name of the domain.
+     * Setting the name of the domain. REQUIRED.
      *
      * @param string $domain fully qualified name of the domain object
      *
@@ -73,5 +63,15 @@ class Delete extends AbstractRequest
         $this->domain = $domain;
 
         return $this;
+    }
+
+    /**
+     * Getting the name of the domain.
+     *
+     * @return string
+     */
+    public function getDomain()
+    {
+        return $this->domain;
     }
 }

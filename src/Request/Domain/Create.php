@@ -124,13 +124,11 @@ class Create extends AbstractRequest
             $domainCreate->append($domainContact);
         }
 
-        if ($this->password !== null) {
-            $domainAuthorization = new AuthorizationInfo($this);
-            $domainCreate->append($domainAuthorization);
+        $domainAuthorization = new AuthorizationInfo($this);
+        $domainCreate->append($domainAuthorization);
 
-            $domainPassword = new Password($this, ['password' => $this->password]);
-            $domainAuthorization->append($domainPassword);
-        }
+        $domainPassword = new Password($this, ['password' => $this->password]);
+        $domainAuthorization->append($domainPassword);
 
         $transaction = new TransactionId($this);
         $command->append($transaction);
@@ -145,7 +143,7 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the name of the domain.
+     * Setting the name of the domain. REQUIRED.
      *
      * @param string $domain fully qualified name of the domain object
      *
@@ -169,9 +167,9 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the initial registration period of the domain object.
+     * Setting the initial registration period of the domain object. OPTIONAL.
      *
-     * @param int $period registration period
+     * @param int|null $period registration period
      *
      * @return self
      */
@@ -185,7 +183,7 @@ class Create extends AbstractRequest
     /**
      * Getting the initial registration period of the domain object.
      *
-     * @return int
+     * @return int|null
      */
     public function getPeriod()
     {
@@ -193,9 +191,9 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the unit of the initial registration period.
+     * Setting the unit of the initial registration period. OPTIONAL.
      *
-     * @param string $unit constant of the unit
+     * @param string|null $unit constant of the unit
      *
      * @return self
      */
@@ -209,7 +207,7 @@ class Create extends AbstractRequest
     /**
      * Getting the unit of the initial registration period.
      *
-     * @return string
+     * @return string|null
      */
     public function getUnit()
     {
@@ -218,7 +216,7 @@ class Create extends AbstractRequest
 
     /**
      * Setting list of the fully qualified names of the delegated host objects
-     * or host attributes (name servers) associated with the domain object.
+     * or host attributes (name servers) associated with the domain object. OPTIONAL.
      *
      * @param array $nameservers list of the fully qualified names
      *
@@ -254,9 +252,9 @@ class Create extends AbstractRequest
 
     /**
      * Setting the identifier for the human or organizational social information (contact)
-     * object to be associated with the domain object as the object registrant.
+     * object to be associated with the domain object as the object registrant. OPTIONAL.
      *
-     * @param string $unit constant of the unit
+     * @param string|null $registrant identifier of the contact
      *
      * @return self
      */
@@ -271,7 +269,7 @@ class Create extends AbstractRequest
      * Getting the identifier for the human or organizational social information (contact)
      * object to be associated with the domain object as the object registrant.
      *
-     * @return string
+     * @return string|null
      */
     public function getRegistrant()
     {
@@ -279,7 +277,8 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the identifiers for other contact objects to be associated with the domain object.
+     * Setting the identifiers for other contact objects to be associated
+     * with the domain object. OPTIONAL.
      *
      * @param array $contacts identifiers of the contacts with types
      *
@@ -293,7 +292,8 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Getting the identifiers for other contact objects to be associated with the domain object.
+     * Getting the identifiers for other contact objects to be associated
+     * with the domain object.
      *
      * @return array
      */
@@ -303,13 +303,13 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the password of the domain.
+     * Setting the password of the domain. REQUIRED.
      *
-     * @param string|null $password authorization information associated with the domain object
+     * @param string $password authorization information associated with the domain object
      *
      * @return self
      */
-    public function setPassword($password = null)
+    public function setPassword($password)
     {
         $this->password = $password;
 
@@ -319,7 +319,7 @@ class Create extends AbstractRequest
     /**
      * Getting the password of the domain.
      *
-     * @return string|null
+     * @return string
      */
     public function getPassword()
     {

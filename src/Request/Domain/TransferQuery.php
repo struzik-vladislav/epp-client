@@ -75,17 +75,7 @@ class TransferQuery extends AbstractRequest
     }
 
     /**
-     * Getting the name of the domain.
-     *
-     * @return string
-     */
-    public function getDomain()
-    {
-        return $this->domain;
-    }
-
-    /**
-     * Setting the name of the domain.
+     * Setting the name of the domain. REQUIRED.
      *
      * @param string $domain fully qualified name of the domain object
      *
@@ -99,7 +89,17 @@ class TransferQuery extends AbstractRequest
     }
 
     /**
-     * Setting the password.
+     * Getting the name of the domain.
+     *
+     * @return string
+     */
+    public function getDomain()
+    {
+        return $this->domain;
+    }
+
+    /**
+     * Setting the password. OPTIONAL.
      *
      * @param string|null $password associated authorization information
      *
@@ -123,7 +123,7 @@ class TransferQuery extends AbstractRequest
     }
 
     /**
-     * Setting registry object identifier associated with the password.
+     * Setting registry object identifier associated with the password. OPTIONAL.
      *
      * @param string|null $passwordROIdentifier object identifier
      *

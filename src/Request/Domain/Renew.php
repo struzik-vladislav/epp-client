@@ -77,7 +77,7 @@ class Renew extends AbstractRequest
     }
 
     /**
-     * Setting the name of the domain.
+     * Setting the name of the domain. REQUIRED.
      *
      * @param string $domain fully qualified name of the domain object
      *
@@ -101,9 +101,9 @@ class Renew extends AbstractRequest
     }
 
     /**
-     * Setting the date on which the current validity period ends.
+     * Setting the date on which the current validity period ends. REQUIRED.
      *
-     * @param DateTime $expiryDate current expiry date
+     * @param \DateTime $expiryDate current expiry date
      *
      * @return self
      */
@@ -117,7 +117,7 @@ class Renew extends AbstractRequest
     /**
      * Getting the date on which the current validity period ends.
      *
-     * @return DateTime
+     * @return \DateTime
      */
     public function getExpiryDate()
     {
@@ -126,9 +126,9 @@ class Renew extends AbstractRequest
 
     /**
      * Setting the number of units to be added to the registration period
-     * of the domain object.
+     * of the domain object. OPTIONAL.
      *
-     * @param int $period registration period
+     * @param int|null $period registration period
      *
      * @return self
      */
@@ -143,7 +143,7 @@ class Renew extends AbstractRequest
      * Getting the number of units to be added to the registration period
      * of the domain object.
      *
-     * @return int
+     * @return int|null
      */
     public function getPeriod()
     {
@@ -151,9 +151,9 @@ class Renew extends AbstractRequest
     }
 
     /**
-     * Setting the unit of the period.
+     * Setting the unit of the period. OPTIONAL.
      *
-     * @param string $unit constant of the unit
+     * @param string|null $unit constant of the unit
      *
      * @return self
      */
@@ -167,7 +167,7 @@ class Renew extends AbstractRequest
     /**
      * Getting the unit of the period.
      *
-     * @return string
+     * @return string|null
      */
     public function getUnit()
     {

@@ -229,7 +229,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the name of the domain.
+     * Setting the name of the domain. REQUIRED.
      *
      * @param string $domain fully qualified name of the domain object
      *
@@ -253,7 +253,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the nameservers for adding.
+     * Setting the nameservers for adding. OPTIONAL.
      *
      * @param HostInterface[] $nameservers array of domain's nameservers
      *
@@ -277,7 +277,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the nameservers for removing.
+     * Setting the nameservers for removing. OPTIONAL.
      *
      * @param HostInterface[] $nameservers array of domain's nameservers
      *
@@ -301,7 +301,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the contacts for adding.
+     * Setting the contacts for adding. OPTIONAL.
      *
      * @param array $contacts array of domain's contacts
      *
@@ -325,7 +325,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the contacts for removing.
+     * Setting the contacts for removing. OPTIONAL.
      *
      * @param array $contacts array of domain's contacts
      *
@@ -349,7 +349,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the statuses for adding.
+     * Setting the statuses for adding. OPTIONAL.
      *
      * @param StatusHelper[] $statuses array of domain's statuses
      *
@@ -373,7 +373,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the statuses for removing.
+     * Setting the statuses for removing. OPTIONAL.
      *
      * @param StatusHelper[] $statuses array of domain's statuses
      *
@@ -398,9 +398,9 @@ class Update extends AbstractRequest
 
     /**
      * Setting the identifier for the human or organizational social information (contact)
-     * object to be associated with the domain object as the object registrant.
+     * object to be associated with the domain object as the object registrant. OPTIONAL.
      *
-     * @param string $unit constant of the unit
+     * @param string|null $registrant identifier of the contact
      *
      * @return self
      */
@@ -415,7 +415,7 @@ class Update extends AbstractRequest
      * Getting the identifier for the human or organizational social information (contact)
      * object to be associated with the domain object as the object registrant.
      *
-     * @return string
+     * @return string|null
      */
     public function getRegistrant()
     {
@@ -423,7 +423,7 @@ class Update extends AbstractRequest
     }
 
     /**
-     * Setting the password of the domain.
+     * Setting the password of the domain. OPTIONAL.
      *
      * @param string|null $password authorization information associated with the domain object
      *

@@ -47,7 +47,7 @@ class Acknowledgement extends AbstractRequest
     }
 
     /**
-     * Setting the identifier of the message to dequeue.
+     * Setting the identifier of the message to dequeue. REQUIRED.
      *
      * @param string $messageId identifier of the message
      *

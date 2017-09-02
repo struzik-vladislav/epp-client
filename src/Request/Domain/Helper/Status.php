@@ -23,7 +23,7 @@ class Status
     private $reason;
 
     /**
-     * Setting the status.
+     * Setting the status. REQUIRED.
      *
      * @param string $status the value of the status constant
      *
@@ -47,7 +47,7 @@ class Status
     }
 
     /**
-     * Setting the language of the reason.
+     * Setting the language of the reason. OPTIONAL.
      *
      * @param string|null $language ISO code of the language
      *
@@ -71,7 +71,7 @@ class Status
     }
 
     /**
-     * Setting the reason for status assignment.
+     * Setting the reason for status assignment. OPTIONAL.
      *
      * @param string|null $reason text of the reason
      *

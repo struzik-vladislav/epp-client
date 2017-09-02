@@ -65,7 +65,7 @@ class TransferReject extends AbstractRequest
     }
 
     /**
-     * Setting the identifier of the contact.
+     * Setting the identifier of the contact. REQUIRED.
      *
      * @param string $identifier contact identifier
      *
@@ -89,7 +89,7 @@ class TransferReject extends AbstractRequest
     }
 
     /**
-     * Setting the password.
+     * Setting the password. REQUIRED.
      *
      * @param string $password associated authorization information
      *

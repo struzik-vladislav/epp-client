@@ -63,7 +63,7 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the name of the host.
+     * Setting the name of the host. REQUIRED.
      *
      * @param string $host fully qualified name of the host object
      *
@@ -87,7 +87,7 @@ class Create extends AbstractRequest
     }
 
     /**
-     * Setting the addresses of the host object.
+     * Setting the addresses of the host object. OPTIONAL.
      *
      * @param array $addresses IP addresses
      *

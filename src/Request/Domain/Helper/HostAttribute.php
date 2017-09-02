@@ -18,7 +18,7 @@ class HostAttribute implements HostInterface
     private $addresses = [];
 
     /**
-     * Setting the name of the host.
+     * Setting the name of the host. REQUIRED.
      *
      * @param string $host fully qualified name of the host object
      *
@@ -42,7 +42,7 @@ class HostAttribute implements HostInterface
     }
 
     /**
-     * Setting the IP addresses to be associated with the host.
+     * Setting the IP addresses to be associated with the host. OPTIONAL.
      *
      * @param array $address array of the IP addresses
      *

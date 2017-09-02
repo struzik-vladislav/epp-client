@@ -89,6 +89,20 @@ class TransferRequest extends AbstractRequest
     }
 
     /**
+     * Setting the name of the domain. REQUIRED.
+     *
+     * @param string $domain fully qualified name of the domain object
+     *
+     * @return self
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+
+        return $this;
+    }
+
+    /**
      * Getting the name of the domain.
      *
      * @return string
@@ -100,9 +114,9 @@ class TransferRequest extends AbstractRequest
 
     /**
      * Setting the number of units to be added to the registration period
-     * of the domain object at completion of the transfer process.
+     * of the domain object at completion of the transfer process. OPTIONAL.
      *
-     * @param int $period number of units
+     * @param int|null $period number of units
      *
      * @return self
      */
@@ -117,7 +131,7 @@ class TransferRequest extends AbstractRequest
      * Getting the number of units to be added to the registration period
      * of the domain object at completion of the transfer process.
      *
-     * @return int
+     * @return int|null
      */
     public function getPeriod()
     {
@@ -125,9 +139,9 @@ class TransferRequest extends AbstractRequest
     }
 
     /**
-     * Setting the unit of the period.
+     * Setting the unit of the period. OPTIONAL.
      *
-     * @param string $unit constant of the unit
+     * @param string|null $unit constant of the unit
      *
      * @return self
      */
@@ -141,7 +155,7 @@ class TransferRequest extends AbstractRequest
     /**
      * Getting the unit of the period.
      *
-     * @return string
+     * @return string|null
      */
     public function getUnit()
     {
@@ -149,21 +163,7 @@ class TransferRequest extends AbstractRequest
     }
 
     /**
-     * Setting the name of the domain.
-     *
-     * @param string $domain fully qualified name of the domain object
-     *
-     * @return self
-     */
-    public function setDomain($domain)
-    {
-        $this->domain = $domain;
-
-        return $this;
-    }
-
-    /**
-     * Setting the password.
+     * Setting the password. REQUIRED.
      *
      * @param string $password associated authorization information
      *
@@ -187,7 +187,7 @@ class TransferRequest extends AbstractRequest
     }
 
     /**
-     * Setting registry object identifier associated with the password.
+     * Setting registry object identifier associated with the password. OPTIONAL.
      *
      * @param string|null $passwordROIdentifier object identifier
      *

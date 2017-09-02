@@ -44,6 +44,7 @@ class PostalInfo
 
     /**
      * Setting the name of the individual or role represented by the contact.
+     * REQUIRED for creating, OPTIONAL for updating.
      *
      * @param string|null $name contact name
      *
@@ -59,7 +60,7 @@ class PostalInfo
     /**
      * Getting the name of the individual or role represented by the contact.
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -67,7 +68,7 @@ class PostalInfo
     }
 
     /**
-     * Setting the name of the organization.
+     * Setting the name of the organization. OPTIONAL.
      *
      * @param string|null $organization the name of the organization
      *
@@ -83,7 +84,7 @@ class PostalInfo
     /**
      * Getting the name of the organization.
      *
-     * @return string
+     * @return string|null
      */
     public function getOrganization()
     {
@@ -91,7 +92,7 @@ class PostalInfo
     }
 
     /**
-     * Setting the contact's street address.
+     * Setting the contact's street address. OPTIONAL.
      *
      * @param array $streets street address
      *
@@ -115,7 +116,7 @@ class PostalInfo
     }
 
     /**
-     * Setting the contact's city.
+     * Setting the contact's city. REQUIRED for creating, OPTIONAL for updating.
      *
      * @param string|null $city city
      *
@@ -131,7 +132,7 @@ class PostalInfo
     /**
      * Getting the contact's city.
      *
-     * @return string
+     * @return string|null
      */
     public function getCity()
     {
@@ -139,7 +140,7 @@ class PostalInfo
     }
 
     /**
-     * Setting the contact's state or province.
+     * Setting the contact's state or province. OPTIONAL.
      *
      * @param string|null $state state or province
      *
@@ -155,7 +156,7 @@ class PostalInfo
     /**
      * Getting the contact's state or province.
      *
-     * @return string
+     * @return string|null
      */
     public function getState()
     {
@@ -163,7 +164,7 @@ class PostalInfo
     }
 
     /**
-     * Setting the contact's postal code.
+     * Setting the contact's postal code. OPTIONAL.
      *
      * @param string|null $postalCode postal code
      *
@@ -179,7 +180,7 @@ class PostalInfo
     /**
      * Getting the contact's postal code.
      *
-     * @return string
+     * @return string|null
      */
     public function getPostalCode()
     {
@@ -187,7 +188,7 @@ class PostalInfo
     }
 
     /**
-     * Setting the contact's country code.
+     * Setting the contact's country code. REQUIRED for creating, OPTIONAL for updating.
      *
      * @param string|null $countryCode country code
      *
@@ -203,7 +204,7 @@ class PostalInfo
     /**
      * Getting the contact's country code.
      *
-     * @return string
+     * @return string|null
      */
     public function getCountryCode()
     {

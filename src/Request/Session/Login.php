@@ -116,9 +116,9 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Setting the value of the login parameter. Required.
+     * Setting the value of the login parameter. REQUIRED.
      *
-     * @param string $login
+     * @param string $login user login
      *
      * @return self
      */
@@ -140,9 +140,9 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Setting the value of the password parameter. Required.
+     * Setting the value of the password parameter. REQUIRED.
      *
-     * @param string $password
+     * @param string $password user password
      *
      * @return self
      */
@@ -164,9 +164,9 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Setting the value of the new password parameter. Optional.
+     * Setting the value of the new password parameter. OPTIONAL.
      *
-     * @param string $newPassword
+     * @param string|null $newPassword new user password
      *
      * @return self
      */
@@ -180,7 +180,7 @@ class Login extends AbstractRequest
     /**
      * Getting the value of the new password parameter.
      *
-     * @return string
+     * @return string|null
      */
     public function getNewPassword()
     {
@@ -188,9 +188,10 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Setting the value of the version parameter. Required.
+     * Setting the protocol version to be used for the command
+     * or ongoing server session. REQUIRED.
      *
-     * @param string $version
+     * @param string $version protocol version
      *
      * @return self
      */
@@ -202,7 +203,8 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Getting the value of the version parameter.
+     * Getting the protocol version to be used for the command
+     * or ongoing server session.
      *
      * @return string
      */
@@ -212,9 +214,10 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Setting the value of the language parameter. Required.
+     * Setting the text response language to be used for the command
+     * or ongoing server session commands. REQUIRED.
      *
-     * @param string $language
+     * @param string $language language code
      *
      * @return self
      */
@@ -226,7 +229,8 @@ class Login extends AbstractRequest
     }
 
     /**
-     * Getting the value of the language parameter.
+     * Getting the text response language to be used for the command
+     * or ongoing server session commands.
      *
      * @return string
      */

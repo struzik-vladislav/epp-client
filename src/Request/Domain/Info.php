@@ -76,7 +76,7 @@ class Info extends AbstractRequest
     }
 
     /**
-     * Setting the name of the domain.
+     * Setting the name of the domain. REQUIRED.
      *
      * @param string $domain fully qualified name of the domain object
      *
@@ -100,7 +100,8 @@ class Info extends AbstractRequest
     }
 
     /**
-     * Setting the attribute to control return of information describing hosts related to the domain object.
+     * Setting the attribute to control return of information describing
+     * hosts related to the domain object. OPTIONAL.
      *
      * @param string|null $hosts attribute value
      *
@@ -114,7 +115,8 @@ class Info extends AbstractRequest
     }
 
     /**
-     * Getting the attribute to control return of information describing hosts related to the domain object.
+     * Getting the attribute to control return of information describing
+     * hosts related to the domain object.
      *
      * @return string|null
      */
@@ -124,7 +126,7 @@ class Info extends AbstractRequest
     }
 
     /**
-     * Setting the password of the domain.
+     * Setting the password of the domain. OPTIONAL.
      *
      * @param string|null $password authorization information associated with the domain object
      *
