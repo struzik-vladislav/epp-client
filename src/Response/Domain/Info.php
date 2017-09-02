@@ -66,13 +66,13 @@ class Info extends CommonResponse
     /**
      * Nichandle of the domain registrant.
      *
-     * @return string|null
+     * @return string
      */
     public function getRegistrant()
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:infData/domain:registrant');
         if ($node === null) {
-            return;
+            return null;
         }
 
         return $node->nodeValue;
@@ -141,7 +141,7 @@ class Info extends CommonResponse
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:infData/domain:crID');
         if ($node === null) {
-            return;
+            return null;
         }
 
         return $node->nodeValue;
@@ -150,7 +150,7 @@ class Info extends CommonResponse
     /**
      * The date and time of domain object creation.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string|null
      */
@@ -158,7 +158,7 @@ class Info extends CommonResponse
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:infData/domain:crDate');
         if ($node === null) {
-            return;
+            return null;
         }
 
         if ($format === null) {
@@ -171,7 +171,7 @@ class Info extends CommonResponse
     /**
      * The date and time identifying the end of the domain object's registration period.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string|null
      */
@@ -179,7 +179,7 @@ class Info extends CommonResponse
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:infData/domain:exDate');
         if ($node === null) {
-            return;
+            return null;
         }
 
         if ($format === null) {
@@ -198,7 +198,7 @@ class Info extends CommonResponse
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:infData/domain:upID');
         if ($node === null) {
-            return;
+            return null;
         }
 
         return $node->nodeValue;
@@ -207,7 +207,7 @@ class Info extends CommonResponse
     /**
      * The date and time of the most recent domain object modification.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string|null
      */
@@ -215,7 +215,7 @@ class Info extends CommonResponse
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:infData/domain:upDate');
         if ($node === null) {
-            return;
+            return null;
         }
 
         if ($format === null) {
@@ -228,15 +228,15 @@ class Info extends CommonResponse
     /**
      * The date and time of the most recent successful domain object transfer.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string|null
      */
-    public function getTransferDate()
+    public function getTransferDate($format = null)
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:infData/domain:trDate');
         if ($node === null) {
-            return;
+            return null;
         }
 
         if ($format === null) {
@@ -255,7 +255,7 @@ class Info extends CommonResponse
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:infData/domain:authInfo/domain:pw');
         if ($node === null) {
-            return;
+            return null;
         }
 
         return $node->nodeValue;

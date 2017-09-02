@@ -85,18 +85,24 @@ class Info extends CommonResponse
 
         $query = sprintf('//epp:epp/epp:response/epp:resData/contact:infData/contact:postalInfo[@type=\'%s\']', $type);
         $node = $this->getFirst($query);
+        if ($node === null) {
+            return null;
+        }
 
-        return $node ? new PostalInfoHelper($this, $node) : null;
+        return new PostalInfoHelper($this, $node);
     }
 
     /**
      * The contact's voice telephone number.
      *
-     * @return string
+     * @return string|null
      */
     public function getVoice()
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/contact:infData/contact:voice');
+        if ($node === null) {
+            return null;
+        }
 
         return $node->nodeValue;
     }
@@ -109,8 +115,11 @@ class Info extends CommonResponse
     public function getFax()
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/contact:infData/contact:fax');
+        if ($node === null) {
+            return null;
+        }
 
-        return $node ? $node->nodeValue : null;
+        return $node->nodeValue;
     }
 
     /**
@@ -152,7 +161,7 @@ class Info extends CommonResponse
     /**
      * The date and time of contact-object creation.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string
      */
@@ -174,8 +183,8 @@ class Info extends CommonResponse
     public function getUpdaterId()
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/contact:infData/contact:upID');
-        if (is_null($node)) {
-            return;
+        if ($node === null) {
+            return null;
         }
 
         return $node->nodeValue;
@@ -184,7 +193,7 @@ class Info extends CommonResponse
     /**
      * The date and time of the most recent contact-object modification.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string|null
      */
@@ -205,7 +214,7 @@ class Info extends CommonResponse
     /**
      * The date and time of the most recent successful contact-object transfer.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string|null
      */
@@ -231,8 +240,11 @@ class Info extends CommonResponse
     public function getAuthInfo()
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/contact:infData/contact:authInfo/contact:pw');
+        if ($node === null) {
+            return null;
+        }
 
-        return $node ? $node->nodeValue : null;
+        return $node->nodeValue;
     }
 
     /**

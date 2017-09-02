@@ -12,12 +12,12 @@ class Poll extends CommonResponse
     /**
      * Number of messages that exist in the queue.
      *
-     * @return string|null
+     * @return int|null
      */
     public function getMessageCount()
     {
         if ($this->getResultCode() === self::RC_SUCCESS_NO_MESSAGES) {
-            return '0';
+            return 0;
         }
 
         $node = $this->getFirst('//epp:epp/epp:response/epp:msgQ');
@@ -25,7 +25,7 @@ class Poll extends CommonResponse
             return null;
         }
 
-        return $node->getAttribute('count');
+        return (int) $node->getAttribute('count');
     }
 
     /**
@@ -50,11 +50,11 @@ class Poll extends CommonResponse
      *
      * @return \DateTime|string|null
      */
-    public function getEnqueuedDate()
+    public function getEnqueuedDate($format = null)
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:msgQ/epp:qDate');
         if ($node === null) {
-            return;
+            return null;
         }
 
         if ($format === null) {

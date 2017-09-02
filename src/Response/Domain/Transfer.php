@@ -106,7 +106,7 @@ class Transfer extends CommonResponse
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:trnData/domain:exDate');
         if ($node === null) {
-            return;
+            return null;
         }
 
         if ($format === null) {

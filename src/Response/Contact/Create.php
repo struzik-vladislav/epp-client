@@ -24,7 +24,7 @@ class Create extends CommonResponse
     /**
      * The date and time of contact-object creation.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string
      */

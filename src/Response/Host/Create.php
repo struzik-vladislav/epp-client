@@ -24,7 +24,7 @@ class Create extends CommonResponse
     /**
      * Date and time of host object creation.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string
      */

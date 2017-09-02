@@ -103,7 +103,7 @@ class Info extends CommonResponse
     /**
      * Date and time of host object creation.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string
      */
@@ -125,8 +125,8 @@ class Info extends CommonResponse
     public function getUpdaterId()
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/host:infData/host:upID');
-        if (is_null($node)) {
-            return;
+        if ($node === null) {
+            return null;
         }
 
         return $node->nodeValue;
@@ -135,7 +135,7 @@ class Info extends CommonResponse
     /**
      * Date and time of host object updating.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string|null
      */
@@ -156,7 +156,7 @@ class Info extends CommonResponse
     /**
      * Date and time of host object transferring.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string|null
      */

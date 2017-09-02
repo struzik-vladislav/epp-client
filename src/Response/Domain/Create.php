@@ -24,7 +24,7 @@ class Create extends CommonResponse
     /**
      * The date and time of domain object creation.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string
      */
@@ -41,7 +41,7 @@ class Create extends CommonResponse
     /**
      * The date and time identifying the end of the domain object's registration period.
      *
-     * @param string $format format of the date string
+     * @param string|null $format format of the date string
      *
      * @return \DateTime|string|null
      */
@@ -49,7 +49,7 @@ class Create extends CommonResponse
     {
         $node = $this->getFirst('//epp:epp/epp:response/epp:resData/domain:creData/domain:exDate');
         if ($node === null) {
-            return;
+            return null;
         }
 
         if ($format === null) {

@@ -50,8 +50,11 @@ class PostalInfo
     public function getOrganization()
     {
         $node = $this->response->getFirst('contact:org', $this->node);
+        if ($node === null) {
+            return null;
+        }
 
-        return $node ? $node->nodeValue : null;
+        return $node->nodeValue;
     }
 
     /**
@@ -92,8 +95,11 @@ class PostalInfo
     public function getState()
     {
         $node = $this->response->getFirst('contact:addr/contact:sp', $this->node);
+        if ($node === null) {
+            return null;
+        }
 
-        return $node ? $node->nodeValue : null;
+        return $node->nodeValue;
     }
 
     /**
@@ -104,8 +110,11 @@ class PostalInfo
     public function getPostalCode()
     {
         $node = $this->response->getFirst('contact:addr/contact:pc', $this->node);
+        if ($node === null) {
+            return null;
+        }
 
-        return $node ? $node->nodeValue : null;
+        return $node->nodeValue;
     }
 
     /**
