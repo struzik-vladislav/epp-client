@@ -10,6 +10,7 @@ use Struzik\EPPClient\Response\ResponseInterface;
 use Struzik\EPPClient\IdGenerator\BasicGenerator;
 use Struzik\EPPClient\IdGenerator\IdGeneratorInterface;
 use Struzik\EPPClient\Request\RequestInterface;
+use Struzik\EPPClient\Extension\ExtensionInterface;
 use Psr\Log\LoggerInterface;
 
 class EPPClient
@@ -49,6 +50,13 @@ class EPPClient
      */
     private $idGenerator;
 
+    /**
+     * Stack of EPP-extension.
+     *
+     * @var ExtensionInterface[]
+     */
+    private $extensionStack;
+
     public function __construct(ConnectionInterface $connection, LoggerInterface $logger)
     {
         $this->connection = $connection;
@@ -56,6 +64,7 @@ class EPPClient
         $this->namespaceCollection = new NamespaceCollection();
         $this->extNamespaceCollection = new NamespaceCollection();
         $this->idGenerator = new BasicGenerator();
+        $this->extensionStack = array();
     }
 
     /**
@@ -116,6 +125,12 @@ class EPPClient
         // Creating a response
         $responseClass = $request->getResponseClass();
         $response = new $responseClass($responseXML);
+
+        // Handle response in the extension
+        foreach ($this->extensionStack as $extension) {
+            $this->logger->debug(sprintf('Handle response in \'%s\' extension.', get_class($extension)));
+            $extension->handleResponse($response);
+        }
 
         return $response;
     }
@@ -184,5 +199,36 @@ class EPPClient
         $this->idGenerator = $idGenerator;
 
         return $this;
+    }
+
+    /**
+     * Add extension in stack.
+     *
+     * @param ExtensionInterface $extension instance of extension
+     *
+     * @return self
+     */
+    public function pushExtension(ExtensionInterface $extension)
+    {
+        array_unshift($this->extensionStack, $extension);
+        $extension->setupNamespaces($this);
+
+        return $this;
+    }
+
+    /**
+     * Retrieving extension from the stack.
+     *
+     * @return ExtensionInterface
+     *
+     * @throws LogicException
+     */
+    public function popExtension()
+    {
+        if (!$this->extensionStack) {
+            throw new LogicException('You tried to pop from an empty extension stack.');
+        }
+
+        return array_shift($this->extensionStack);
     }
 }

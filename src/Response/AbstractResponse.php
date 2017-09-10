@@ -28,6 +28,13 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
     private $namespaces = [];
 
     /**
+     * Array of add-ons.
+     *
+     * @var array
+     */
+    private $addons = [];
+
+    /**
      * {@inheritdoc}
      */
     public function __construct($xml)
@@ -71,13 +78,38 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
     }
 
     /**
-     * Returns namespaces used in document.
-     *
-     * @return array Array of namespace names with their associated URIs
+     * {@inheritdoc}
      */
     public function getUsedNamespaces()
     {
         return $this->namespaces;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addExtAddon($addon)
+    {
+        $classname = get_class($addon);
+        $this->addons[$classname] = $addon;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeExtAddon($classname)
+    {
+        if (isset($this->addons[$classname])) {
+            unset($this->addons[$classname]);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findExtAddon($classname)
+    {
+        return isset($this->addons[$classname]) ? $this->addons[$classname] : null;
     }
 
     /**

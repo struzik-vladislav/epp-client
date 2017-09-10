@@ -4,7 +4,9 @@ namespace Struzik\EPPClient\Request;
 
 use Struzik\EPPClient\EPPClient;
 use Struzik\EPPClient\Node\Common\Epp;
+use Struzik\EPPClient\Node\Common\Extension;
 use Struzik\EPPClient\Exception\LogicException;
+use Struzik\EPPClient\Extension\RequestAddonInterface;
 
 /**
  * Basic implementation of the request object.
@@ -31,6 +33,13 @@ abstract class AbstractRequest extends \DOMDocument implements RequestInterface
      * @var bool
      */
     private $isBuilt;
+
+    /**
+     * Array of add-ons.
+     *
+     * @var array
+     */
+    private $addons = [];
 
     public function __construct(EPPClient $client)
     {
@@ -81,9 +90,31 @@ abstract class AbstractRequest extends \DOMDocument implements RequestInterface
             throw new LogicException('It\'s impossible to build an already built request.');
         }
 
+        // Build command section
         $this->handleParameters();
         $this->root->build();
         $this->appendChild($this->root->getNode());
+
+        // Build extension section
+        if (count($this->addons) > 0) {
+            $nodeList = $this->getElementsByTagName('command');
+            if ($nodeList->length === 0) {
+                throw new LogicException('Add-on can be added in the request with \'command\' element.');
+            }
+            $command = $nodeList->item(0);
+
+            $extension = new Extension($this);
+            foreach ($this->addons as $addon) {
+                $addon->build($this);
+                $extension->getNode()->appendChild($addon->getRoot());
+            }
+
+            $nodeList = $this->getElementsByTagName('clTRID');
+            $clTRID = $nodeList->length > 0 ? $nodeList->item(0) : null;
+
+            $command->insertBefore($extension->getNode(), $clTRID);
+        }
+
         $this->isBuilt = true;
     }
 
@@ -91,6 +122,33 @@ abstract class AbstractRequest extends \DOMDocument implements RequestInterface
      * {@inheritdoc}
      */
     abstract public function getResponseClass();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addExtAddon(RequestAddonInterface $addon)
+    {
+        $classname = get_class($addon);
+        $this->addons[$classname] = $addon;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeExtAddon($classname)
+    {
+        if (isset($this->addons[$classname])) {
+            unset($this->addons[$classname]);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findExtAddon($classname)
+    {
+        return isset($this->addons[$classname]) ? $this->addons[$classname] : null;
+    }
 
     /**
      * Handling the request object parameters and building a hierarchy of nodes.

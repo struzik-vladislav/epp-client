@@ -5,6 +5,7 @@ namespace Struzik\EPPClient\Node\Common;
 use Struzik\EPPClient\Node\AbstractNode;
 use Struzik\EPPClient\Request\RequestInterface;
 use Struzik\EPPClient\Exception\InvalidArgumentException;
+use Struzik\EPPClient\Exception\UnexpectedValueException;
 
 /**
  * Object representation of the <transfer> node.

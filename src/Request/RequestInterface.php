@@ -2,6 +2,8 @@
 
 namespace Struzik\EPPClient\Request;
 
+use Struzik\EPPClient\Extension\RequestAddonInterface;
+
 /**
  * Describes the request object.
  */
@@ -42,4 +44,27 @@ interface RequestInterface
      * @return string
      */
     public function getResponseClass();
+
+    /**
+     * Adding add-ons in the response object.
+     *
+     * @param object $addon add-on object
+     */
+    public function addExtAddon(RequestAddonInterface $addon);
+
+    /**
+     * Removing add-on by class name.
+     *
+     * @param string $classname class name
+     */
+    public function removeExtAddon($classname);
+
+    /**
+     * Find add-on by class name.
+     *
+     * @param string $classname class name
+     *
+     * @return object|null
+     */
+    public function findExtAddon($classname);
 }
