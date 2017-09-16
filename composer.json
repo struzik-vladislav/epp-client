@@ -13,7 +13,7 @@
         "php": ">=5.6",
         "psr/log": "~1.0",
         "struzik-vladislav/php-error-handler": "~1.0",
-        "struzik-vladislav/xpath-extended": "dev-master"
+        "struzik-vladislav/xpath-extended": "~1.0"
     },
     "suggest": {
         "struzik-vladislav/epp-monolog-formatter": "A EPP requests/responses formatter for Monolog",
