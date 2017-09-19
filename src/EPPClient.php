@@ -57,6 +57,10 @@ class EPPClient
      */
     private $extensionStack;
 
+    /**
+     * @param ConnectionInterface $connection instance of connection object
+     * @param LoggerInterface     $logger     instance of logger object
+     */
     public function __construct(ConnectionInterface $connection, LoggerInterface $logger)
     {
         $this->connection = $connection;
