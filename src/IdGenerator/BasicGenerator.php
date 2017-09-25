@@ -16,11 +16,11 @@ class BasicGenerator implements IdGeneratorInterface
     public function generate(RequestInterface $request)
     {
         $class = get_class($request);
-        $pices = explode('\\', $class);
-        $prefixPices = count($pices) > 2 ? array_slice($pices, -2) : $pices;
-        $prefixPices[] = date('YmdHis');
-        $prefixPices[] = uniqid();
-        $identifier = implode('-', $prefixPices);
+        $pieces = explode('\\', $class);
+        $prefixPieces = count($pieces) > 2 ? array_slice($pieces, -2) : $pieces;
+        $prefixPieces[] = date('YmdHis');
+        $prefixPieces[] = uniqid();
+        $identifier = implode('-', $prefixPieces);
         $identifier = mb_strtoupper($identifier);
 
         return $identifier;
