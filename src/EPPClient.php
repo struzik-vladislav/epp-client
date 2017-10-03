@@ -98,6 +98,14 @@ class EPPClient
     }
 
     /**
+     * Closing the connection to the EPP server.
+     */
+    public function close()
+    {
+        return $this->connection->close();
+    }
+
+    /**
      * Send EPP request.
      *
      * @param RequestInterface $request EPP request

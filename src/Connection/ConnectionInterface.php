@@ -25,7 +25,7 @@ interface ConnectionInterface
     public function isOpened();
 
     /**
-     * Closes the connection.
+     * Closing the connection.
      */
     public function close();
 

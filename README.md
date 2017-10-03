@@ -63,4 +63,5 @@ $response = $client->send($request);
 $request = new Logout($client);
 $response = $client->send($request);
 
+$client->close();
 ```

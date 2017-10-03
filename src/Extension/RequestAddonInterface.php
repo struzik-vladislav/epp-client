@@ -11,6 +11,8 @@ interface RequestAddonInterface
 {
     /**
      * Handling the parameters and building add-on.
+     *
+     * @param RequestInterface $request instance of request object
      */
     public function build(RequestInterface $request);
 
