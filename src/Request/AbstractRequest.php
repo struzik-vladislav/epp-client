@@ -121,6 +121,14 @@ abstract class AbstractRequest extends \DOMDocument implements RequestInterface
     /**
      * {@inheritdoc}
      */
+    public function createElement($name, $value = null)
+    {
+        return parent::createElement((string) $name, (string) $value);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     abstract public function getResponseClass();
 
     /**
