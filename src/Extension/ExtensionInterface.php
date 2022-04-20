@@ -15,12 +15,12 @@ interface ExtensionInterface
      *
      * @param EPPClient $client instance of EPPClient
      */
-    public function setupNamespaces(EPPClient $client);
+    public function setupNamespaces(EPPClient $client): void;
 
     /**
      * Handle response in the extension. Used for setting add-ons in the response object.
      *
      * @param ResponseInterface $response response object
      */
-    public function handleResponse(ResponseInterface $response);
+    public function handleResponse(ResponseInterface $response): void;
 }

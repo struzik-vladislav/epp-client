@@ -10,15 +10,8 @@ use Struzik\EPPClient\Response\ResponseInterface;
  */
 class Disclose
 {
-    /**
-     * @var ResponseInterface
-     */
-    private $response;
-
-    /**
-     * @var \DOMNode
-     */
-    private $node;
+    private ResponseInterface $response;
+    private \DOMNode $node;
 
     public function __construct(ResponseInterface $response, \DOMNode $node)
     {
@@ -32,119 +25,81 @@ class Disclose
 
     /**
      * The value of the "flag" attribute.
-     *
-     * @return string
      */
-    public function getFlag()
+    public function getFlag(): string
     {
         return $this->node->getAttribute('flag');
     }
 
     /**
      * Existence of the <contact:name type="int"/> node.
-     *
-     * @return bool
      */
-    public function nameIntExists()
+    public function nameIntExists(): bool
     {
-        $node = $this->response->getFirst('contact:name[@type=\'int\']', $this->node);
-
-        return (bool) $node;
+        return (bool) $this->response->getFirst('contact:name[@type=\'int\']', $this->node);
     }
 
     /**
      * Existence of the <contact:name type="loc"/> node.
-     *
-     * @return bool
      */
-    public function nameLocExists()
+    public function nameLocExists(): bool
     {
-        $node = $this->response->getFirst('contact:name[@type=\'loc\']', $this->node);
-
-        return (bool) $node;
+        return (bool) $this->response->getFirst('contact:name[@type=\'loc\']', $this->node);
     }
 
     /**
      * Existence of the <contact:org type="int"/> node.
-     *
-     * @return bool
      */
-    public function organizationIntExists()
+    public function organizationIntExists(): bool
     {
-        $node = $this->response->getFirst('contact:org[@type=\'int\']', $this->node);
-
-        return (bool) $node;
+        return (bool) $this->response->getFirst('contact:org[@type=\'int\']', $this->node);
     }
 
     /**
      * Existence of the <contact:org type="loc"/> node.
-     *
-     * @return bool
      */
-    public function organizationLocExists()
+    public function organizationLocExists(): bool
     {
-        $node = $this->response->getFirst('contact:org[@type=\'loc\']', $this->node);
-
-        return (bool) $node;
+        return (bool) $this->response->getFirst('contact:org[@type=\'loc\']', $this->node);
     }
 
     /**
      * Existence of the <contact:addr type="int"/> node.
-     *
-     * @return bool
      */
-    public function addressIntExists()
+    public function addressIntExists(): bool
     {
-        $node = $this->response->getFirst('contact:addr[@type=\'int\']', $this->node);
-
-        return (bool) $node;
+        return (bool) $this->response->getFirst('contact:addr[@type=\'int\']', $this->node);
     }
 
     /**
      * Existence of the <contact:addr type="loc"/> node.
-     *
-     * @return bool
      */
-    public function addressLocExists()
+    public function addressLocExists(): bool
     {
-        $node = $this->response->getFirst('contact:addr[@type=\'loc\']', $this->node);
-
-        return (bool) $node;
+        return (bool) $this->response->getFirst('contact:addr[@type=\'loc\']', $this->node);
     }
 
     /**
      * Existence of the <contact:voice/> node.
-     *
-     * @return bool
      */
-    public function voiceExists()
+    public function voiceExists(): bool
     {
-        $node = $this->response->getFirst('contact:voice', $this->node);
-
-        return (bool) $node;
+        return (bool) $this->response->getFirst('contact:voice', $this->node);
     }
 
     /**
      * Existence of the <contact:fax/> node.
-     *
-     * @return bool
      */
-    public function faxExists()
+    public function faxExists(): bool
     {
-        $node = $this->response->getFirst('contact:fax', $this->node);
-
-        return (bool) $node;
+        return (bool) $this->response->getFirst('contact:fax', $this->node);
     }
 
     /**
      * Existence of the <contact:email/> node.
-     *
-     * @return bool
      */
-    public function emailExists()
+    public function emailExists(): bool
     {
-        $node = $this->response->getFirst('contact:email', $this->node);
-
-        return (bool) $node;
+        return (bool) $this->response->getFirst('contact:email', $this->node);
     }
 }

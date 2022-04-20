@@ -14,12 +14,5 @@ interface RequestAddonInterface
      *
      * @param RequestInterface $request instance of request object
      */
-    public function build(RequestInterface $request);
-
-    /**
-     * Getting the root node of the add-on.
-     *
-     * @return \DOMElement
-     */
-    public function getRoot();
+    public function build(RequestInterface $request): void;
 }

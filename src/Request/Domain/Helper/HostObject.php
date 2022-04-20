@@ -3,23 +3,18 @@
 namespace Struzik\EPPClient\Request\Domain\Helper;
 
 /**
- * Parametres aggregation for host object structure.
+ * Parameters aggregation for host object structure.
  */
 class HostObject implements HostInterface
 {
-    /**
-     * @var string
-     */
-    private $host;
+    private string $host = '';
 
     /**
      * Setting the name of the host. REQUIRED.
      *
      * @param string $host fully qualified name of the host object
-     *
-     * @return self
      */
-    public function setHost($host)
+    public function setHost(string $host): self
     {
         $this->host = $host;
 
@@ -28,10 +23,8 @@ class HostObject implements HostInterface
 
     /**
      * Getting the name of the host.
-     *
-     * @return string
      */
-    public function getHost()
+    public function getHost(): string
     {
         return $this->host;
     }

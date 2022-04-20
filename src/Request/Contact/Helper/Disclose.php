@@ -2,81 +2,41 @@
 
 namespace Struzik\EPPClient\Request\Contact\Helper;
 
-use Struzik\EPPClient\Node\Contact\Disclose as DiscloseNode;
 use Struzik\EPPClient\Exception\UnexpectedValueException;
+use Struzik\EPPClient\Node\Contact\ContactDiscloseNode;
 
 /**
- * Parametres aggregation for information disclosing structure.
+ * Parameters aggregation for information disclosing structure.
  */
 class Disclose
 {
-    /**
-     * @var string
-     */
-    private $flag;
+    private string $flag;
+    private bool $nameInt = false;
+    private bool $nameLoc = false;
+    private bool $organizationInt = false;
+    private bool $organizationLoc = false;
+    private bool $addressInt = false;
+    private bool $addressLoc = false;
+    private bool $voice = false;
+    private bool $fax = false;
+    private bool $email = false;
 
-    /**
-     * @var bool
-     */
-    private $nameInt = false;
-
-    /**
-     * @var bool
-     */
-    private $nameLoc = false;
-
-    /**
-     * @var bool
-     */
-    private $organizationInt = false;
-
-    /**
-     * @var bool
-     */
-    private $organizationLoc = false;
-
-    /**
-     * @var bool
-     */
-    private $addressInt = false;
-
-    /**
-     * @var bool
-     */
-    private $addressLoc = false;
-
-    /**
-     * @var bool
-     */
-    private $voice = false;
-
-    /**
-     * @var bool
-     */
-    private $fax = false;
-
-    /**
-     * @var bool
-     */
-    private $email = false;
+    public function __construct(string $flag)
+    {
+        $this->setFlag($flag);
+    }
 
     /**
      * Setting value of the 'flag' attribute of <disclose> node.
      *
      * @param string $flag 'flag' attribute value
      *
-     * @return self
+     * @throws UnexpectedValueException
      */
-    public function setFlag($flag)
+    public function setFlag(string $flag): self
     {
-        if (!in_array($flag, [DiscloseNode::FLAG_HIDE, DiscloseNode::ALT_FLAG_HIDE, DiscloseNode::FLAG_SHOW, DiscloseNode::ALT_FLAG_SHOW])) {
-            throw new UnexpectedValueException(sprintf(
-                'The value of the parameter \'flag\' must be set to \'%s\', \'%s\', \'%s\' or \'%s\'.',
-                DiscloseNode::FLAG_HIDE,
-                DiscloseNode::ALT_FLAG_HIDE,
-                DiscloseNode::FLAG_SHOW,
-                DiscloseNode::ALT_FLAG_SHOW
-            ));
+        if (!in_array($flag, [ContactDiscloseNode::FLAG_HIDE, ContactDiscloseNode::ALT_FLAG_HIDE, ContactDiscloseNode::FLAG_SHOW, ContactDiscloseNode::ALT_FLAG_SHOW], true)) {
+            throw new UnexpectedValueException(sprintf('The value of the parameter "flag" must be set to "%s", "%s", "%s" or "%s".', ContactDiscloseNode::FLAG_HIDE, ContactDiscloseNode::ALT_FLAG_HIDE, ContactDiscloseNode::FLAG_SHOW, ContactDiscloseNode::ALT_FLAG_SHOW));
         }
 
         $this->flag = $flag;
@@ -86,226 +46,188 @@ class Disclose
 
     /**
      * Getting value of the 'flag' attribute of <disclose> node.
-     *
-     * @return string
      */
-    public function getFlag()
+    public function getFlag(): string
     {
         return $this->flag;
     }
 
     /**
-     * Setting an disclosing for the name of the contact with type 'int'.
+     * Setting disclosing for the name of the contact with type 'int'.
      *
      * @param bool $nameInt disclose information
-     *
-     * @return self
      */
-    public function setNameInt($nameInt)
+    public function setNameInt(bool $nameInt): self
     {
-        $this->nameInt = (bool) $nameInt;
+        $this->nameInt = $nameInt;
 
         return $this;
     }
 
     /**
-     * Getting an disclosing for the name of the contact with type 'int'.
-     *
-     * @return bool
+     * Getting disclosing for the name of the contact with type 'int'.
      */
-    public function getNameInt()
+    public function getNameInt(): bool
     {
         return $this->nameInt;
     }
 
     /**
-     * Setting an disclosing for the name of the contact with type 'loc'.
+     * Setting disclosing for the name of the contact with type 'loc'.
      *
      * @param bool $nameLoc disclose information
-     *
-     * @return self
      */
-    public function setNameLoc($nameLoc)
+    public function setNameLoc(bool $nameLoc): self
     {
-        $this->nameLoc = (bool) $nameLoc;
+        $this->nameLoc = $nameLoc;
 
         return $this;
     }
 
     /**
-     * Getting an disclosing for the name of the contact with type 'loc'.
-     *
-     * @return bool
+     * Getting disclosing for the name of the contact with type 'loc'.
      */
-    public function getNameLoc()
+    public function getNameLoc(): bool
     {
         return $this->nameLoc;
     }
 
     /**
-     * Setting an disclosing for the organization of the contact with type 'int'.
+     * Setting disclosing for the organization of the contact with type 'int'.
      *
      * @param bool $organizationInt disclose information
-     *
-     * @return self
      */
-    public function setOrganizationInt($organizationInt)
+    public function setOrganizationInt(bool $organizationInt): self
     {
-        $this->organizationInt = (bool) $organizationInt;
+        $this->organizationInt = $organizationInt;
 
         return $this;
     }
 
     /**
-     * Getting an disclosing for the organization of the contact with type 'int'.
-     *
-     * @return bool
+     * Getting disclosing for the organization of the contact with type 'int'.
      */
-    public function getOrganizationInt()
+    public function getOrganizationInt(): bool
     {
         return $this->organizationInt;
     }
 
     /**
-     * Setting an disclosing for the organization of the contact with type 'loc'.
+     * Setting disclosing for the organization of the contact with type 'loc'.
      *
      * @param bool $organizationLoc disclose information
-     *
-     * @return self
      */
-    public function setOrganizationLoc($organizationLoc)
+    public function setOrganizationLoc(bool $organizationLoc): self
     {
-        $this->organizationLoc = (bool) $organizationLoc;
+        $this->organizationLoc = $organizationLoc;
 
         return $this;
     }
 
     /**
-     * Getting an disclosing for the organization of the contact with type 'loc'.
-     *
-     * @return bool
+     * Getting disclosing for the organization of the contact with type 'loc'.
      */
-    public function getOrganizationLoc()
+    public function getOrganizationLoc(): bool
     {
         return $this->organizationLoc;
     }
 
     /**
-     * Setting an disclosing for the address of the contact with type 'int'.
+     * Setting disclosing for the address of the contact with type 'int'.
      *
      * @param bool $addressInt disclose information
-     *
-     * @return self
      */
-    public function setAddressInt($addressInt)
+    public function setAddressInt(bool $addressInt): self
     {
-        $this->addressInt = (bool) $addressInt;
+        $this->addressInt = $addressInt;
 
         return $this;
     }
 
     /**
-     * Getting an disclosing for the address of the contact with type 'int'.
-     *
-     * @return bool
+     * Getting disclosing for the address of the contact with type 'int'.
      */
-    public function getAddressInt()
+    public function getAddressInt(): bool
     {
         return $this->addressInt;
     }
 
     /**
-     * Setting an disclosing for the address of the contact with type 'loc'.
+     * Setting disclosing for the address of the contact with type 'loc'.
      *
      * @param bool $addressLoc disclose information
-     *
-     * @return self
      */
-    public function setAddressLoc($addressLoc)
+    public function setAddressLoc(bool $addressLoc): self
     {
-        $this->addressLoc = (bool) $addressLoc;
+        $this->addressLoc = $addressLoc;
 
         return $this;
     }
 
     /**
-     * Getting an disclosing for the address of the contact with type 'loc'.
-     *
-     * @return bool
+     * Getting disclosing for the address of the contact with type 'loc'.
      */
-    public function getAddressLoc()
+    public function getAddressLoc(): bool
     {
         return $this->addressLoc;
     }
 
     /**
-     * Setting an disclosing for the voice of the contact.
+     * Setting disclosing for the voice of the contact.
      *
      * @param bool $voice disclose information
-     *
-     * @return self
      */
-    public function setVoice($voice)
+    public function setVoice(bool $voice): self
     {
-        $this->voice = (bool) $voice;
+        $this->voice = $voice;
 
         return $this;
     }
 
     /**
-     * Getting an disclosing for the voice of the contact.
-     *
-     * @return bool
+     * Getting disclosing for the voice of the contact.
      */
-    public function getVoice()
+    public function getVoice(): bool
     {
         return $this->voice;
     }
 
     /**
-     * Setting an disclosing for the fax of the contact.
+     * Setting disclosing for the fax of the contact.
      *
      * @param bool $fax disclose information
-     *
-     * @return self
      */
-    public function setFax($fax)
+    public function setFax(bool $fax): self
     {
-        $this->fax = (bool) $fax;
+        $this->fax = $fax;
 
         return $this;
     }
 
     /**
-     * Getting an disclosing for the fax of the contact.
-     *
-     * @return bool
+     * Getting disclosing for the fax of the contact.
      */
-    public function getFax()
+    public function getFax(): bool
     {
         return $this->fax;
     }
 
     /**
-     * Setting an disclosing for the email of the contact.
+     * Setting disclosing for the email of the contact.
      *
      * @param bool $email disclose information
-     *
-     * @return self
      */
-    public function setEmail($email)
+    public function setEmail(bool $email): self
     {
-        $this->email = (bool) $email;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Getting an disclosing for the email of the contact.
-     *
-     * @return bool
+     * Getting disclosing for the email of the contact.
      */
-    public function getEmail()
+    public function getEmail(): bool
     {
         return $this->email;
     }

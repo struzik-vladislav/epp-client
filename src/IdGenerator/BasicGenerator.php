@@ -13,14 +13,17 @@ class BasicGenerator implements IdGeneratorInterface
     /**
      * {@inheritdoc}
      */
-    public function generate(RequestInterface $request)
+    public function generate(RequestInterface $request): string
     {
-        $class = get_class($request);
-        $pieces = explode('\\', $class);
-        $prefixPieces = count($pieces) > 2 ? array_slice($pieces, -2) : $pieces;
-        $prefixPieces[] = date('YmdHis');
-        $prefixPieces[] = uniqid();
-        $identifier = implode('-', $prefixPieces);
+        $class = (new \ReflectionClass($request))->getShortName();
+        $prefix = substr($class, 0, mb_strpos($class, 'Request'));
+        $prefix = preg_replace('/([A-Z])/u', '-$1', $prefix);
+        $prefix = trim($prefix, '-');
+
+        $identifierPieces[] = $prefix;
+        $identifierPieces[] = date('YmdHis');
+        $identifierPieces[] = uniqid();
+        $identifier = implode('-', $identifierPieces);
         $identifier = mb_strtoupper($identifier);
 
         return $identifier;

@@ -2,11 +2,8 @@
 
 namespace Struzik\EPPClient\Response;
 
-use XPath\DOMXPath;
-use Struzik\ErrorHandler\ErrorHandler;
-use Struzik\ErrorHandler\Processor\IntoExceptionProcessor;
-use Struzik\ErrorHandler\Exception\ErrorException;
 use Struzik\EPPClient\Exception\RuntimeException;
+use XPath\DOMXPath;
 
 /**
  * Basic implementation of the response object.
@@ -15,41 +12,32 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
 {
     /**
      * XPath query handler.
-     *
-     * @var \DOMXPath
      */
-    public $xpath;
+    public \DOMXPath $xpath;
 
     /**
      * Namespaces used in document.
-     *
-     * @var array
      */
-    private $namespaces = [];
+    private array $namespaces = [];
 
     /**
      * Array of add-ons.
-     *
-     * @var array
      */
-    private $addons = [];
+    private array $addons = [];
 
     /**
      * {@inheritdoc}
+     *
+     * @throws RuntimeException
      */
-    public function __construct($xml)
+    public function __construct(string $xml)
     {
         try {
-            $errorHandler = (new ErrorHandler())
-                ->pushProcessor((new IntoExceptionProcessor())->setErrorTypes(E_ALL));
-            $errorHandler->set();
-
+            parent::__construct();
             $this->preserveWhiteSpace = false;
             $this->loadXML($xml);
             $this->initDOMXPath();
-
-            $errorHandler->restore();
-        } catch (ErrorException $e) {
+        } catch (\Throwable $e) {
             throw new RuntimeException('Error has occurred on building response object. See previous exception.', 0, $e);
         }
     }
@@ -57,22 +45,22 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
     /**
      * {@inheritdoc}
      */
-    abstract public function isSuccess();
+    abstract public function isSuccess(): bool;
 
     /**
      * {@inheritdoc}
      */
-    public function get($xpathQuery, \DOMNode $contextnode = null)
+    public function get($xpathQuery, \DOMNode $contextNode = null): \DOMNodeList
     {
-        return $this->xpath->query($xpathQuery, $contextnode);
+        return $this->xpath->query($xpathQuery, $contextNode);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getFirst($xpathQuery, \DOMNode $contextnode = null)
+    public function getFirst(string $xpathQuery, \DOMNode $contextNode = null): ?\DOMNode
     {
-        $list = $this->get($xpathQuery, $contextnode);
+        $list = $this->get($xpathQuery, $contextNode);
 
         return count($list) ? $list->item(0) : null;
     }
@@ -80,7 +68,7 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
     /**
      * {@inheritdoc}
      */
-    public function getUsedNamespaces()
+    public function getUsedNamespaces(): array
     {
         return $this->namespaces;
     }
@@ -88,7 +76,7 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
     /**
      * {@inheritdoc}
      */
-    public function addExtAddon($addon)
+    public function addExtAddon(object $addon): void
     {
         $classname = get_class($addon);
         $this->addons[$classname] = $addon;
@@ -97,27 +85,25 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
     /**
      * {@inheritdoc}
      */
-    public function removeExtAddon($classname)
+    public function removeExtAddon($classname): void
     {
-        if (isset($this->addons[$classname])) {
-            unset($this->addons[$classname]);
-        }
+        unset($this->addons[$classname]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function findExtAddon($classname)
+    public function findExtAddon($classname): ?object
     {
-        return isset($this->addons[$classname]) ? $this->addons[$classname] : null;
+        return $this->addons[$classname] ?? null;
     }
 
     /**
      * Initialisation XPath.
      *
-     * @return $this
+     * @throws \Exception
      */
-    private function initDOMXPath()
+    private function initDOMXPath(): void
     {
         $this->xpath = new DOMXPath($this);
 
@@ -129,7 +115,5 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
             $this->namespaces[$name] = $uri;
             $this->xpath->registerNamespace($name, $uri);
         }
-
-        return $this;
     }
 }

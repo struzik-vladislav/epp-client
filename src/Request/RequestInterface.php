@@ -2,6 +2,7 @@
 
 namespace Struzik\EPPClient\Request;
 
+use Struzik\EPPClient\EPPClient;
 use Struzik\EPPClient\Extension\RequestAddonInterface;
 
 /**
@@ -10,61 +11,37 @@ use Struzik\EPPClient\Extension\RequestAddonInterface;
 interface RequestInterface
 {
     /**
-     * Specifies whether the request was built.
-     *
-     * @return bool
+     * Instance of EPP client.
      */
-    public function isBuilt();
+    public function getClient(): EPPClient;
+
+    /**
+     * Instance of XML-document of request.
+     */
+    public function getDocument(): \DOMDocument;
 
     /**
      * Handling the request object parameters and building XML document.
      */
-    public function build();
-
-    /**
-     * Getting XML representation of the request.
-     *
-     * @return string
-     */
-    public function saveXML();
-
-    /**
-     * Create new element node.
-     *
-     * @param string $name  The tag name of the element
-     * @param string $value The value of the element
-     *
-     * @return DOMElement|false
-     */
-    public function createElement($name, $value = null);
+    public function build(): void;
 
     /**
      * Getting the name of the response object class.
-     *
-     * @return string
      */
-    public function getResponseClass();
+    public function getResponseClass(): string;
 
     /**
      * Adding add-ons in the response object.
-     *
-     * @param object $addon add-on object
      */
-    public function addExtAddon(RequestAddonInterface $addon);
+    public function addExtAddon(RequestAddonInterface $addon): void;
 
     /**
      * Removing add-on by class name.
-     *
-     * @param string $classname class name
      */
-    public function removeExtAddon($classname);
+    public function removeExtAddon(string $className): void;
 
     /**
      * Find add-on by class name.
-     *
-     * @param string $classname class name
-     *
-     * @return object|null
      */
-    public function findExtAddon($classname);
+    public function findExtAddon(string $className): ?RequestAddonInterface;
 }

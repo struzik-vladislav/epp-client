@@ -15,6 +15,7 @@ Under construction.
 
 
 ## Basic usage
+
 ```php
 <?php
 
@@ -23,7 +24,7 @@ use Monolog\Handler\StreamHandler;
 use Struzik\EPPClient\Connection\StreamSocketConnection;
 use Struzik\EPPClient\NamespaceCollection;
 use Struzik\EPPClient\EPPClient;
-use Struzik\EPPClient\Request\Session\Login;
+use Struzik\EPPClient\Request\Session\LoginRequest;
 use Struzik\EPPClient\Request\Session\Logout;
 
 require_once __DIR__.'/vendor/autoload.php';
@@ -45,23 +46,22 @@ $connection = new StreamSocketConnection(
 );
 
 $client = new EPPClient($connection, $logger);
-$client->getNamespaceCollection()
-    ->offsetSet(NamespaceCollection::NS_NAME_ROOT, 'urn:ietf:params:xml:ns:epp-1.0')
-    ->offsetSet(NamespaceCollection::NS_NAME_CONTACT, 'urn:ietf:params:xml:ns:contact-1.0')
-    ->offsetSet(NamespaceCollection::NS_NAME_HOST, 'urn:ietf:params:xml:ns:host-1.0')
-    ->offsetSet(NamespaceCollection::NS_NAME_DOMAIN, 'urn:ietf:params:xml:ns:domain-1.0');
+$client->getNamespaceCollection()->offsetSet(NamespaceCollection::NS_NAME_ROOT, 'urn:ietf:params:xml:ns:epp-1.0')
+$client->getNamespaceCollection()->offsetSet(NamespaceCollection::NS_NAME_CONTACT, 'urn:ietf:params:xml:ns:contact-1.0')
+$client->getNamespaceCollection()->offsetSet(NamespaceCollection::NS_NAME_HOST, 'urn:ietf:params:xml:ns:host-1.0')
+$client->getNamespaceCollection()->offsetSet(NamespaceCollection::NS_NAME_DOMAIN, 'urn:ietf:params:xml:ns:domain-1.0');
 
 $client->connect();
 
-$request = new Login($client);
+$request = new LoginRequest($client);
 $request->setLogin('login')
     ->setPassword('password')
     ->setLanguage('en')
-    ->setVersion('1.0');
+    ->setProtocolVersion('1.0');
 $response = $client->send($request);
 
 $request = new Logout($client);
 $response = $client->send($request);
 
-$client->close();
+$client->disconnect();
 ```

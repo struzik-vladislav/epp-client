@@ -3,8 +3,6 @@
 namespace Struzik\EPPClient\Request;
 
 use Struzik\EPPClient\EPPClient;
-use Struzik\EPPClient\Node\Common\Epp;
-use Struzik\EPPClient\Node\Common\Extension;
 use Struzik\EPPClient\Exception\LogicException;
 use Struzik\EPPClient\Extension\RequestAddonInterface;
 
@@ -15,31 +13,18 @@ abstract class AbstractRequest extends \DOMDocument implements RequestInterface
 {
     /**
      * Instance of EPPClient.
-     *
-     * @var EPPClient
      */
-    private $client;
-
-    /**
-     * Root node of XML document.
-     *
-     * @var Epp
-     */
-    private $root;
-
-    /**
-     * Flag. The value is true if the request was built.
-     *
-     * @var bool
-     */
-    private $isBuilt;
+    private EPPClient $client;
 
     /**
      * Array of add-ons.
-     *
-     * @var array
      */
-    private $addons = [];
+    private array $addons;
+
+    /**
+     * Flag. The value is true if the request was built.
+     */
+    private bool $isBuilt;
 
     public function __construct(EPPClient $client)
     {
@@ -47,72 +32,38 @@ abstract class AbstractRequest extends \DOMDocument implements RequestInterface
         $this->xmlStandalone = false;
         $this->preserveWhiteSpace = true;
         $this->formatOutput = true;
-        $this->isBuilt = false;
 
         $this->client = $client;
-        $this->root = new Epp($this);
+        $this->addons = [];
+        $this->isBuilt = false;
     }
 
     /**
      * Getting the EPP server client.
-     *
-     * @return EPPClient
      */
-    public function getClient()
+    public function getClient(): EPPClient
     {
         return $this->client;
     }
 
-    /**
-     * Getting the root node of the request object.
-     *
-     * @return Epp
-     */
-    public function getRoot()
+    public function getDocument(): \DOMDocument
     {
-        return $this->root;
+        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isBuilt()
+    public function build(): void
     {
-        return $this->isBuilt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function build()
-    {
-        if ($this->isBuilt()) {
-            throw new LogicException('It\'s impossible to build an already built request.');
+        if ($this->isBuilt) {
+            throw new LogicException("It's impossible to build an already built request.");
         }
 
         // Build command section
         $this->handleParameters();
-        $this->root->build();
-        $this->appendChild($this->root->getNode());
-
-        // Build extension section
-        if (count($this->addons) > 0) {
-            $nodeList = $this->getElementsByTagName('command');
-            if ($nodeList->length === 0) {
-                throw new LogicException('Add-on can be added in the request with \'command\' element.');
-            }
-            $command = $nodeList->item(0);
-
-            $extension = new Extension($this);
-            foreach ($this->addons as $addon) {
-                $addon->build($this);
-                $extension->getNode()->appendChild($addon->getRoot());
-            }
-
-            $nodeList = $this->getElementsByTagName('clTRID');
-            $clTRID = $nodeList->length > 0 ? $nodeList->item(0) : null;
-
-            $command->insertBefore($extension->getNode(), $clTRID);
+        foreach ($this->addons as $addon) {
+            $addon->build($this);
         }
 
         $this->isBuilt = true;
@@ -121,20 +72,12 @@ abstract class AbstractRequest extends \DOMDocument implements RequestInterface
     /**
      * {@inheritdoc}
      */
-    public function createElement($name, $value = null)
-    {
-        return parent::createElement((string) $name, (string) $value);
-    }
+    abstract public function getResponseClass(): string;
 
     /**
      * {@inheritdoc}
      */
-    abstract public function getResponseClass();
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addExtAddon(RequestAddonInterface $addon)
+    public function addExtAddon(RequestAddonInterface $addon): void
     {
         $classname = get_class($addon);
         $this->addons[$classname] = $addon;
@@ -143,23 +86,21 @@ abstract class AbstractRequest extends \DOMDocument implements RequestInterface
     /**
      * {@inheritdoc}
      */
-    public function removeExtAddon($classname)
+    public function removeExtAddon(string $className): void
     {
-        if (isset($this->addons[$classname])) {
-            unset($this->addons[$classname]);
-        }
+        unset($this->addons[$className]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function findExtAddon($classname)
+    public function findExtAddon(string $className): ?RequestAddonInterface
     {
-        return isset($this->addons[$classname]) ? $this->addons[$classname] : null;
+        return $this->addons[$className] ?? null;
     }
 
     /**
-     * Handling the request object parameters and building a hierarchy of nodes.
+     * Handling the request object parameters and building XML document.
      */
-    abstract protected function handleParameters();
+    abstract protected function handleParameters(): void;
 }

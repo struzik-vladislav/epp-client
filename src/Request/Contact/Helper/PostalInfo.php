@@ -3,54 +3,25 @@
 namespace Struzik\EPPClient\Request\Contact\Helper;
 
 /**
- * Parametres aggregation for postal information structure.
+ * Parameters aggregation for postal information structure.
  */
 class PostalInfo
 {
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $organization;
-
-    /**
-     * @var array
-     */
-    private $streets = [];
-
-    /**
-     * @var string
-     */
-    private $city;
-
-    /**
-     * @var string
-     */
-    private $state;
-
-    /**
-     * @var string
-     */
-    private $postalCode;
-
-    /**
-     * @var string
-     */
-    private $countryCode;
+    private ?string $name = null;
+    private ?string $organization = null;
+    private array $streets = [];
+    private ?string $city = null;
+    private ?string $state = null;
+    private ?string $postalCode = null;
+    private ?string $countryCode = null;
 
     /**
      * Setting the name of the individual or role represented by the contact.
      * REQUIRED for creating, OPTIONAL for updating.
      *
      * @param string|null $name contact name
-     *
-     * @return self
      */
-    public function setName($name = null)
+    public function setName(?string $name = null): self
     {
         $this->name = $name;
 
@@ -59,10 +30,8 @@ class PostalInfo
 
     /**
      * Getting the name of the individual or role represented by the contact.
-     *
-     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -71,10 +40,8 @@ class PostalInfo
      * Setting the name of the organization. OPTIONAL.
      *
      * @param string|null $organization the name of the organization
-     *
-     * @return self
      */
-    public function setOrganization($organization = null)
+    public function setOrganization(?string $organization = null): self
     {
         $this->organization = $organization;
 
@@ -83,10 +50,8 @@ class PostalInfo
 
     /**
      * Getting the name of the organization.
-     *
-     * @return string|null
      */
-    public function getOrganization()
+    public function getOrganization(): ?string
     {
         return $this->organization;
     }
@@ -95,10 +60,8 @@ class PostalInfo
      * Setting the contact's street address. OPTIONAL.
      *
      * @param array $streets street address
-     *
-     * @return self
      */
-    public function setStreets(array $streets = [])
+    public function setStreets(array $streets = []): self
     {
         $this->streets = $streets;
 
@@ -107,10 +70,8 @@ class PostalInfo
 
     /**
      * Setting the contact's street address.
-     *
-     * @return array
      */
-    public function getStreets()
+    public function getStreets(): array
     {
         return $this->streets;
     }
@@ -119,10 +80,8 @@ class PostalInfo
      * Setting the contact's city. REQUIRED for creating, OPTIONAL for updating.
      *
      * @param string|null $city city
-     *
-     * @return self
      */
-    public function setCity($city = null)
+    public function setCity(?string $city = null): self
     {
         $this->city = $city;
 
@@ -131,10 +90,8 @@ class PostalInfo
 
     /**
      * Getting the contact's city.
-     *
-     * @return string|null
      */
-    public function getCity()
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -143,10 +100,8 @@ class PostalInfo
      * Setting the contact's state or province. OPTIONAL.
      *
      * @param string|null $state state or province
-     *
-     * @return self
      */
-    public function setState($state = null)
+    public function setState(?string $state = null): self
     {
         $this->state = $state;
 
@@ -155,10 +110,8 @@ class PostalInfo
 
     /**
      * Getting the contact's state or province.
-     *
-     * @return string|null
      */
-    public function getState()
+    public function getState(): ?string
     {
         return $this->state;
     }
@@ -167,10 +120,8 @@ class PostalInfo
      * Setting the contact's postal code. OPTIONAL.
      *
      * @param string|null $postalCode postal code
-     *
-     * @return self
      */
-    public function setPostalCode($postalCode = null)
+    public function setPostalCode(?string $postalCode = null): self
     {
         $this->postalCode = $postalCode;
 
@@ -179,10 +130,8 @@ class PostalInfo
 
     /**
      * Getting the contact's postal code.
-     *
-     * @return string|null
      */
-    public function getPostalCode()
+    public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
@@ -191,10 +140,8 @@ class PostalInfo
      * Setting the contact's country code. REQUIRED for creating, OPTIONAL for updating.
      *
      * @param string|null $countryCode country code
-     *
-     * @return self
      */
-    public function setCountryCode($countryCode = null)
+    public function setCountryCode(?string $countryCode = null): self
     {
         $this->countryCode = $countryCode;
 
@@ -203,10 +150,8 @@ class PostalInfo
 
     /**
      * Getting the contact's country code.
-     *
-     * @return string|null
      */
-    public function getCountryCode()
+    public function getCountryCode(): ?string
     {
         return $this->countryCode;
     }

@@ -2,60 +2,25 @@
 
 namespace Struzik\EPPClient;
 
+use Psr\Log\LoggerInterface;
 use Struzik\EPPClient\Connection\ConnectionInterface;
-use Struzik\EPPClient\Exception\LogicException;
 use Struzik\EPPClient\Exception\ConnectionException;
-use Struzik\EPPClient\Response\Session\Greeting;
-use Struzik\EPPClient\Response\ResponseInterface;
+use Struzik\EPPClient\Exception\LogicException;
+use Struzik\EPPClient\Extension\ExtensionInterface;
 use Struzik\EPPClient\IdGenerator\BasicGenerator;
 use Struzik\EPPClient\IdGenerator\IdGeneratorInterface;
 use Struzik\EPPClient\Request\RequestInterface;
-use Struzik\EPPClient\Extension\ExtensionInterface;
-use Psr\Log\LoggerInterface;
+use Struzik\EPPClient\Response\ResponseInterface;
 
 class EPPClient
 {
-    /**
-     * Connection to the EPP server.
-     *
-     * @var ConnectionInterface
-     */
-    private $connection;
-
-    /**
-     * Logger object.
-     *
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
-     * Collection of object namespaces.
-     *
-     * @var NamespaceCollection
-     */
-    private $namespaceCollection;
-
-    /**
-     * Collection of extension namespaces.
-     *
-     * @var NamespaceCollection
-     */
-    private $extNamespaceCollection;
-
-    /**
-     * Identifier generator for client's transaction.
-     *
-     * @var IdGeneratorInterface
-     */
-    private $idGenerator;
-
-    /**
-     * Stack of EPP-extension.
-     *
-     * @var ExtensionInterface[]
-     */
-    private $extensionStack;
+    private ConnectionInterface $connection;
+    private LoggerInterface $logger;
+    private NamespaceCollection $namespaceCollection;
+    private NamespaceCollection $extNamespaceCollection;
+    private IdGeneratorInterface $idGenerator;
+    /** @var ExtensionInterface[] */
+    private array $extensionStack;
 
     /**
      * @param ConnectionInterface $connection instance of connection object
@@ -68,41 +33,32 @@ class EPPClient
         $this->namespaceCollection = new NamespaceCollection();
         $this->extNamespaceCollection = new NamespaceCollection();
         $this->idGenerator = new BasicGenerator();
-        $this->extensionStack = array();
+        $this->extensionStack = [];
     }
 
     /**
      * Opening the connection to the EPP server.
      *
-     * @return Greeting
-     *
      * @throws ConnectionException
      * @throws LogicException
      */
-    public function connect()
+    public function connect(): void
     {
         if ($this->connection->isOpened()) {
             throw new LogicException('It is not possible to re-open the connection to the EPP server.');
         }
 
         $this->connection->open();
-        $xml = $this->connection->read();
-        $this->logger->info('Greeting on connection to the EPP server.', ['body' => $xml]);
-
-        $greeting = new Greeting($xml);
-        if (!$greeting->isSuccess()) {
-            throw new ConnectionException('Invalid greeting on connection to the EPP server.');
-        }
-
-        return $greeting;
     }
 
     /**
      * Closing the connection to the EPP server.
+     *
+     * @throws ConnectionException
      */
-    public function close()
+    public function disconnect(): void
     {
-        return $this->connection->close();
+        $this->connection->close();
     }
 
     /**
@@ -110,11 +66,10 @@ class EPPClient
      *
      * @param RequestInterface $request EPP request
      *
-     * @return ResponseInterface
-     *
      * @throws LogicException
+     * @throws ConnectionException
      */
-    public function send(RequestInterface $request)
+    public function send(RequestInterface $request): ResponseInterface
     {
         // Checking the connection
         if (!$this->connection->isOpened()) {
@@ -122,11 +77,8 @@ class EPPClient
         }
 
         // Preparing the request
-        if (!$request->isBuilt()) {
-            $request->build();
-        }
-
-        $requestXML = $request->saveXML();
+        $request->build();
+        $requestXML = $request->getDocument()->saveXML();
         $this->logger->info('EPP request body.', ['body' => $requestXML]);
 
         // Sending a request
@@ -149,10 +101,8 @@ class EPPClient
 
     /**
      * Getting the URI collection of objects.
-     *
-     * @return NamespaceCollection
      */
-    public function getNamespaceCollection()
+    public function getNamespaceCollection(): NamespaceCollection
     {
         return $this->namespaceCollection;
     }
@@ -162,19 +112,15 @@ class EPPClient
      *
      * @param NamespaceCollection $collection Collection object
      */
-    public function setNamespaceCollection(NamespaceCollection $collection)
+    public function setNamespaceCollection(NamespaceCollection $collection): void
     {
         $this->namespaceCollection = $collection;
-
-        return $this;
     }
 
     /**
      * Getting the URI collection of extensions.
-     *
-     * @return NamespaceCollection
      */
-    public function getExtNamespaceCollection()
+    public function getExtNamespaceCollection(): NamespaceCollection
     {
         return $this->extNamespaceCollection;
     }
@@ -184,19 +130,15 @@ class EPPClient
      *
      * @param NamespaceCollection $collection Collection object
      */
-    public function setExtNamespaceCollection(NamespaceCollection $collection)
+    public function setExtNamespaceCollection(NamespaceCollection $collection): void
     {
         $this->extNamespaceCollection = $collection;
-
-        return $this;
     }
 
     /**
      * Getting the identifier generator.
-     *
-     * @return IdGeneratorInterface
      */
-    public function getIdGenerator()
+    public function getIdGenerator(): IdGeneratorInterface
     {
         return $this->idGenerator;
     }
@@ -206,36 +148,28 @@ class EPPClient
      *
      * @param IdGeneratorInterface $idGenerator Generator object
      */
-    public function setIdGenerator(IdGeneratorInterface $idGenerator)
+    public function setIdGenerator(IdGeneratorInterface $idGenerator): void
     {
         $this->idGenerator = $idGenerator;
-
-        return $this;
     }
 
     /**
      * Add extension in stack.
      *
      * @param ExtensionInterface $extension instance of extension
-     *
-     * @return self
      */
-    public function pushExtension(ExtensionInterface $extension)
+    public function pushExtension(ExtensionInterface $extension): void
     {
         array_unshift($this->extensionStack, $extension);
         $extension->setupNamespaces($this);
-
-        return $this;
     }
 
     /**
      * Retrieving extension from the stack.
      *
-     * @return ExtensionInterface
-     *
      * @throws LogicException
      */
-    public function popExtension()
+    public function popExtension(): ExtensionInterface
     {
         if (!$this->extensionStack) {
             throw new LogicException('You tried to pop from an empty extension stack.');

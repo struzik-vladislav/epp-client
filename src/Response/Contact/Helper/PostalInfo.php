@@ -10,15 +10,8 @@ use Struzik\EPPClient\Response\ResponseInterface;
  */
 class PostalInfo
 {
-    /**
-     * @var ResponseInterface
-     */
-    private $response;
-
-    /**
-     * @var \DOMNode
-     */
-    private $node;
+    private ResponseInterface $response;
+    private \DOMNode $node;
 
     public function __construct(ResponseInterface $response, \DOMNode $node)
     {
@@ -32,22 +25,16 @@ class PostalInfo
 
     /**
      * The name of the individual or role represented by the contact.
-     *
-     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
-        $node = $this->response->getFirst('contact:name', $this->node);
-
-        return $node->nodeValue;
+        return $this->response->getFirst('contact:name', $this->node)->nodeValue;
     }
 
     /**
      * The name of the organization.
-     *
-     * @return string|null
      */
-    public function getOrganization()
+    public function getOrganization(): ?string
     {
         $node = $this->response->getFirst('contact:org', $this->node);
         if ($node === null) {
@@ -59,40 +46,26 @@ class PostalInfo
 
     /**
      * The contact's street address.
-     *
-     * @return \Generator|null
      */
-    public function getStreet()
+    public function getStreet(): array
     {
         $nodes = $this->response->get('contact:addr/contact:street', $this->node);
 
-        if ($nodes->length === 0) {
-            return null;
-        }
-
-        foreach ($nodes as $node) {
-            yield $node->nodeValue;
-        }
+        return array_map(static fn (\DOMNode $node): string => $node->nodeValue, iterator_to_array($nodes));
     }
 
     /**
      * The contact's city.
-     *
-     * @return string
      */
-    public function getCity()
+    public function getCity(): string
     {
-        $node = $this->response->getFirst('contact:addr/contact:city', $this->node);
-
-        return $node->nodeValue;
+        return $this->response->getFirst('contact:addr/contact:city', $this->node)->nodeValue;
     }
 
     /**
      * The contact's state or province.
-     *
-     * @return string|null
      */
-    public function getState()
+    public function getState(): ?string
     {
         $node = $this->response->getFirst('contact:addr/contact:sp', $this->node);
         if ($node === null) {
@@ -104,10 +77,8 @@ class PostalInfo
 
     /**
      * The contact's postal code.
-     *
-     * @return string|null
      */
-    public function getPostalCode()
+    public function getPostalCode(): ?string
     {
         $node = $this->response->getFirst('contact:addr/contact:pc', $this->node);
         if ($node === null) {
@@ -119,13 +90,9 @@ class PostalInfo
 
     /**
      * The contact's country code.
-     *
-     * @return string
      */
-    public function getCountryCode()
+    public function getCountryCode(): string
     {
-        $node = $this->response->getFirst('contact:addr/contact:cc', $this->node);
-
-        return $node->nodeValue;
+        return $this->response->getFirst('contact:addr/contact:cc', $this->node)->nodeValue;
     }
 }

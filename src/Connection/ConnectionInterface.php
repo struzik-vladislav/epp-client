@@ -2,44 +2,48 @@
 
 namespace Struzik\EPPClient\Connection;
 
+use Struzik\EPPClient\Exception\ConnectionException;
+
 /**
  * The interface object of connection to the EPP server.
  */
 interface ConnectionInterface
 {
     /**
-     * Header lenght according RFC 5734 (See: https://tools.ietf.org/html/rfc5734#section-4).
+     * Header length according RFC 5734 (See: https://tools.ietf.org/html/rfc5734#section-4).
      */
-    const HEADER_LENGTH = 4;
+    public const HEADER_LENGTH = 4;
 
     /**
      * Establishes the connection with the EPP server.
+     *
+     * @throws ConnectionException
      */
-    public function open();
+    public function open(): void;
 
     /**
      * Whether an actual connection to the EPP server is established.
-     *
-     * @return bool
      */
-    public function isOpened();
+    public function isOpened(): bool;
 
     /**
      * Closing the connection.
+     *
+     * @throws ConnectionException
      */
-    public function close();
+    public function close(): void;
 
     /**
      * Reading XML data from a connection.
      *
-     * @return string
+     * @throws ConnectionException
      */
-    public function read();
+    public function read(): string;
 
     /**
      * Write XML data to the connection.
      *
-     * @param string $xml RAW-request
+     * @throws ConnectionException
      */
-    public function write($xml);
+    public function write(string $xml): void;
 }

@@ -2,38 +2,33 @@
 
 namespace Struzik\EPPClient;
 
+use ArrayAccess;
 use ArrayIterator;
 use Countable;
 use IteratorAggregate;
-use ArrayAccess;
 
 /**
  * Storage for namespace URIs.
  */
 class NamespaceCollection implements Countable, IteratorAggregate, ArrayAccess
 {
-    const NS_NAME_ROOT = 'epp';
-    const NS_NAME_DOMAIN = 'domain';
-    const NS_NAME_CONTACT = 'contact';
-    const NS_NAME_HOST = 'host';
+    public const NS_NAME_ROOT = 'epp';
+    public const NS_NAME_DOMAIN = 'domain';
+    public const NS_NAME_CONTACT = 'contact';
+    public const NS_NAME_HOST = 'host';
 
-    /**
-     * @var array
-     */
-    private $collection;
+    private array $collection;
 
     public function __construct()
     {
-        $this->collection = array();
+        $this->collection = [];
     }
 
     /**
      * Returns the number of elements in the collection.
      * Implementation of the Countable interface.
-     *
-     * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->collection);
     }
@@ -41,10 +36,8 @@ class NamespaceCollection implements Countable, IteratorAggregate, ArrayAccess
     /**
      * Gets an iterator for iterating over the elements in the collection.
      * Implementation of the IteratorAggregate interface.
-     *
-     * @return ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new ArrayIterator($this->collection);
     }
@@ -54,10 +47,8 @@ class NamespaceCollection implements Countable, IteratorAggregate, ArrayAccess
      * Implementation of the ArrayAccess interface.
      *
      * @param mixed $offset
-     *
-     * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->collection[$offset]);
     }
@@ -86,11 +77,9 @@ class NamespaceCollection implements Countable, IteratorAggregate, ArrayAccess
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->collection[$offset] = $value;
-
-        return $this;
     }
 
     /**
@@ -99,12 +88,10 @@ class NamespaceCollection implements Countable, IteratorAggregate, ArrayAccess
      *
      * @param mixed $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         if ($this->offsetExists($offset)) {
             unset($this->collection[$offset]);
         }
-
-        return null;
     }
 }

@@ -3,33 +3,20 @@
 namespace Struzik\EPPClient\Request\Domain\Helper;
 
 /**
- * Parametres aggregation for domain status structure.
+ * Parameters aggregation for domain status structure.
  */
 class Status
 {
-    /**
-     * @var string
-     */
-    private $status;
-
-    /**
-     * @var string
-     */
-    private $language;
-
-    /**
-     * @var string
-     */
-    private $reason;
+    private string $status = '';
+    private string $language = '';
+    private string $reason = '';
 
     /**
      * Setting the status. REQUIRED.
      *
      * @param string $status the value of the status constant
-     *
-     * @return self
      */
-    public function setStatus($status)
+    public function setStatus(string $status): self
     {
         $this->status = $status;
 
@@ -38,10 +25,8 @@ class Status
 
     /**
      * Getting the status.
-     *
-     * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -50,10 +35,8 @@ class Status
      * Setting the language of the reason. OPTIONAL.
      *
      * @param string|null $language ISO code of the language
-     *
-     * @return self
      */
-    public function setLanguage($language = null)
+    public function setLanguage(string $language): self
     {
         $this->language = $language;
 
@@ -62,10 +45,8 @@ class Status
 
     /**
      * Getting the language of the reason.
-     *
-     * @return string|null
      */
-    public function getLanguage()
+    public function getLanguage(): string
     {
         return $this->language;
     }
@@ -73,11 +54,9 @@ class Status
     /**
      * Setting the reason for status assignment. OPTIONAL.
      *
-     * @param string|null $reason text of the reason
-     *
-     * @return self
+     * @param string $reason text of the reason
      */
-    public function setReason($reason = null)
+    public function setReason(string $reason): self
     {
         $this->reason = $reason;
 
@@ -86,10 +65,8 @@ class Status
 
     /**
      * Getting the reason for status assignment.
-     *
-     * @return string|null
      */
-    public function getReason()
+    public function getReason(): string
     {
         return $this->reason;
     }

@@ -13,8 +13,6 @@ interface IdGeneratorInterface
      * Getting pseudo unique identifier for request.
      *
      * @param RequestInterface $request Request object
-     *
-     * @return string
      */
-    public function generate(RequestInterface $request);
+    public function generate(RequestInterface $request): string;
 }
