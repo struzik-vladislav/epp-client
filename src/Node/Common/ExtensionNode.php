@@ -9,6 +9,12 @@ class ExtensionNode
 {
     public static function create(RequestInterface $request): \DOMElement
     {
+        $extensionNodeList = $request->getDocument()->getElementsByTagName('extension');
+        $extensionNode = $extensionNodeList->count() > 0 ? $extensionNodeList->item(0) : null;
+        if ($extensionNode instanceof \DOMElement) {
+            return $extensionNode;
+        }
+
         $commandNodeList = $request->getDocument()->getElementsByTagName('command');
         $commandNode = $commandNodeList->count() > 0 ? $commandNodeList->item(0) : null;
         if (!$commandNode instanceof \DOMElement) {
