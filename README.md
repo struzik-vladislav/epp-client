@@ -9,8 +9,20 @@ Library implemented according to next RFCs:
 * [RFC 5734](https://tools.ietf.org/html/rfc5734) - Extensible Provisioning Protocol (EPP) Transport over TCP
 * [RFC 3735](https://tools.ietf.org/html/rfc3735) - Guidelines for Extending the Extensible Provisioning Protocol (EPP)
 
-## Documentation
+### Connections
+* [struzik-vladislav/epp-socket-connection](https://github.com/struzik-vladislav/epp-socket-connection) - Socket connection to the EPP servers
+* RabbitMQ Connection & Daemon is coming soon
 
+### Extensions
+* [struzik-vladislav/epp-ext-rgp](https://github.com/struzik-vladislav/epp-ext-rgp) - Domain Registry Grace Period (RGP) extension for the EPP Client
+* [struzik-vladislav/epp-ext-secdns](https://github.com/struzik-vladislav/epp-ext-secdns) - DNS Security Extension for the EPP Client
+* [struzik-vladislav/epp-ext-hostmasterua-uaepp](https://github.com/struzik-vladislav/epp-ext-hostmasterua-uaepp) - UAEPP extension provided by [HostmasterUA](https://hostmaster.ua/)
+* [struzik-vladislav/epp-ext-hostmasterua-balance](https://github.com/struzik-vladislav/epp-ext-hostmasterua-balance) - Balance extension provided by [HostmasterUA](https://hostmaster.ua/)
+
+### Tools
+* [struzik-vladislav/epp-monolog-formatter](https://github.com/struzik-vladislav/epp-monolog-formatter) - Requests/Responses [monolog/monolog](https://github.com/Seldaek/monolog) formatter for hiding sensitive data  
+
+## Documentation
 Under construction.
 
 
