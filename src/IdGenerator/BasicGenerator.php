@@ -5,8 +5,7 @@ namespace Struzik\EPPClient\IdGenerator;
 use Struzik\EPPClient\Request\RequestInterface;
 
 /**
- * Basic implementation of identifier generator.
- * Based on uniqid() function.
+ * Basic implementation of identifier generator. Based on DateTime.
  */
 class BasicGenerator implements IdGeneratorInterface
 {
@@ -21,8 +20,7 @@ class BasicGenerator implements IdGeneratorInterface
         $prefix = trim($prefix, '-');
 
         $identifierPieces[] = $prefix;
-        $identifierPieces[] = date('YmdHis');
-        $identifierPieces[] = uniqid();
+        $identifierPieces[] = (new \DateTime())->format('YmdHis.u');
         $identifier = implode('-', $identifierPieces);
         $identifier = mb_strtoupper($identifier);
 
