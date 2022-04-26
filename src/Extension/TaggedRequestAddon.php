@@ -7,7 +7,7 @@ use Struzik\EPPClient\Request\RequestInterface;
 
 class TaggedRequestAddon implements RequestAddonInterface
 {
-    public string $customTag = '';
+    private string $customTag = '';
 
     public function build(RequestInterface $request): void
     {
