@@ -3,6 +3,7 @@
 namespace Struzik\EPPClient\Response\Domain;
 
 use Struzik\EPPClient\Response\CommonResponse;
+use XPath;
 
 /**
  * Object representation of the response of domain information command.
@@ -71,6 +72,20 @@ class InfoDomainResponse extends CommonResponse
         $contacts = array_map(static fn (\DOMNode $node): array => ['type' => $node->getAttribute('type'), 'nichandle' => $node->nodeValue], iterator_to_array($nodes));
 
         return array_combine(array_column($contacts, 'type'), array_column($contacts, 'nichandle'));
+    }
+
+    /**
+     * Nichandle of the domain contact by type.
+     */
+    public function getContactByType(string $type): ?string
+    {
+        $pattern = '//epp:epp/epp:response/epp:resData/domain:infData/domain:contact[php:functionString("XPath\quote", @type) = \'%s\']';
+        $node = $this->getFirst(sprintf($pattern, XPath\quote($type)));
+        if ($node === null) {
+            return null;
+        }
+
+        return $node->nodeValue;
     }
 
     /**
