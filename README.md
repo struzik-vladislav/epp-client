@@ -1,4 +1,10 @@
 # EPP Client
+![Build Status](https://github.com/struzik-vladislav/epp-client/actions/workflows/ci.yml/badge.svg?branch=master)
+[![Latest Stable Version](https://img.shields.io/github/v/release/struzik-vladislav/epp-client?sort=semver&style=flat-square)](https://packagist.org/packages/struzik-vladislav/epp-client)
+[![Total Downloads](https://img.shields.io/packagist/dt/struzik-vladislav/epp-client?style=flat-square)](https://packagist.org/packages/struzik-vladislav/epp-client/stats)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
+
 PHP library for communicating with EPP (Extensible Provisioning Protocol) servers.
 
 Library implemented according to next RFCs:
