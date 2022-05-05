@@ -100,6 +100,14 @@ class EPPClient
     }
 
     /**
+     * Getting the connection object.
+     */
+    public function getConnection(): ConnectionInterface
+    {
+        return $this->connection;
+    }
+
+    /**
      * Getting the URI collection of objects.
      */
     public function getNamespaceCollection(): NamespaceCollection
