@@ -58,9 +58,8 @@ class NamespaceCollection implements Countable, IteratorAggregate, ArrayAccess
      * Implementation of the ArrayAccess interface.
      *
      * @param mixed $offset
-     *
-     * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         if ($this->offsetExists($offset)) {
