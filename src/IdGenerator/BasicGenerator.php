@@ -15,7 +15,9 @@ class BasicGenerator implements IdGeneratorInterface
     public function generate(RequestInterface $request): string
     {
         $class = (new \ReflectionClass($request))->getShortName();
-        $prefix = substr($class, 0, mb_strpos($class, 'Request'));
+        $prefix = substr($class, -7) === 'Request'
+            ? substr($class, 0, -7)
+            : $class;
         $prefix = preg_replace('/([A-Z])/u', '-$1', $prefix);
         $prefix = trim($prefix, '-');
 
