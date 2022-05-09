@@ -129,7 +129,7 @@ class UpdateContactRequest extends AbstractRequest
                 ContactPasswordNode::create($this, $contactAuthInfoNode, $this->password);
             }
             if ($this->disclose instanceof Disclose) {
-                $contactDiscloseNode = ContactDiscloseNode::create($this, $contactUpdateNode, $this->disclose->getFlag());
+                $contactDiscloseNode = ContactDiscloseNode::create($this, $contactChangeNode, $this->disclose->getFlag());
                 if ($this->disclose->getNameInt()) {
                     ContactDiscloseNameNode::create($this, $contactDiscloseNode, ContactDiscloseNameNode::TYPE_INT);
                 }

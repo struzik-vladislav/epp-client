@@ -2,7 +2,9 @@
 
 namespace Struzik\EPPClient\Tests\Request\Contact;
 
+use Struzik\EPPClient\Node\Contact\ContactDiscloseNode;
 use Struzik\EPPClient\Node\Contact\ContactPostalInfoNode;
+use Struzik\EPPClient\Request\Contact\Helper\Disclose;
 use Struzik\EPPClient\Request\Contact\Helper\PostalInfo;
 use Struzik\EPPClient\Request\Contact\UpdateContactRequest;
 use Struzik\EPPClient\Tests\EPPTestCase;
@@ -33,6 +35,10 @@ class UpdateContactRequestTest extends EPPTestCase
           <contact:voice>+380.000000001</contact:voice>
           <contact:fax>+380.000000002</contact:fax>
           <contact:email>person@example.com</contact:email>
+          <contact:disclose flag="1">
+            <contact:voice/>
+            <contact:email/>
+          </contact:disclose>
         </contact:chg>
       </contact:update>
     </update>
@@ -56,6 +62,10 @@ EOF;
         $request->setVoice('+380.000000001');
         $request->setFax('+380.000000002');
         $request->setEmail('person@example.com');
+        $request->setDisclose((new Disclose(ContactDiscloseNode::FLAG_SHOW))
+            ->setVoice(true)
+            ->setEmail(true)
+        );
         $request->build();
 
         $this->assertSame($expected, $request->getDocument()->saveXML());
