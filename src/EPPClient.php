@@ -79,12 +79,10 @@ class EPPClient
         // Preparing the request
         $request->build();
         $requestXML = $request->getDocument()->saveXML();
-        $this->logger->info('EPP request body.', ['body' => $requestXML]);
 
         // Sending a request
         $this->connection->write($requestXML);
         $responseXML = $this->connection->read();
-        $this->logger->info('EPP response body.', ['body' => $responseXML]);
 
         // Creating a response
         $responseClass = $request->getResponseClass();
