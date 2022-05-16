@@ -17,7 +17,7 @@ Library implemented according to next RFCs:
 
 ### Connections
 * [struzik-vladislav/epp-socket-connection](https://github.com/struzik-vladislav/epp-socket-connection) - Socket connection to the EPP servers
-* RabbitMQ Connection & Daemon is coming soon
+* [struzik-vladislav/epp-rabbitmq-connection](https://github.com/struzik-vladislav/epp-rabbitmq-connection) - Connection to the EPP servers via RabbitMQ (EPP RabbitMQ Daemon is coming soon)
 
 ### Extensions
 * [struzik-vladislav/epp-ext-rgp](https://github.com/struzik-vladislav/epp-ext-rgp) - Domain Registry Grace Period (RGP) extension for the EPP Client
