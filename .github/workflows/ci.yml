@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: [ '7.4', '8.0', '8.1', '8.2' ]
+        php-versions: [ '7.4', '8.0', '8.1', '8.2', '8.3' ]
+        dependency-versions: [ 'lowest', 'highest' ]
 
     steps:
       - uses: actions/checkout@v3
@@ -28,7 +29,9 @@ jobs:
         run: composer validate --strict
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        uses: ramsey/composer-install@v2
+        with:
+          dependency-versions: ${{ matrix.dependency-versions }}
 
       - name: Run test suite
         run: composer run-script test
