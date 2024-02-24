@@ -7,6 +7,9 @@
 
 PHP library for communicating with EPP (Extensible Provisioning Protocol) servers.
 
+### Documentation
+Go to https://struzik-vladislav.github.io/epp-client/.
+
 Library implemented according to next RFCs:
 * [RFC 5730](https://tools.ietf.org/html/rfc5730) - Extensible Provisioning Protocol (EPP)
 * [RFC 3731](https://tools.ietf.org/html/rfc3731) - Extensible Provisioning Protocol (EPP) Domain Name Mapping
@@ -28,10 +31,6 @@ Library implemented according to next RFCs:
 
 ### Tools
 * [struzik-vladislav/epp-monolog-formatter](https://github.com/struzik-vladislav/epp-monolog-formatter) - Requests/Responses [monolog/monolog](https://github.com/Seldaek/monolog) formatter for hiding sensitive data  
-
-## Documentation
-Under construction.
-
 
 ## Basic usage
 
