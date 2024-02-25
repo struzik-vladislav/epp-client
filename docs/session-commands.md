@@ -74,7 +74,7 @@ The EPP **&lt;login&gt;** command is used to establish a session with an EPP ser
         </svcExtension>
       </svcs>
     </login>
-    <clTRID>unique-transaction-id</clTRID>
+    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 ```
@@ -121,7 +121,7 @@ The EPP **&lt;logout&gt;** command is used to end a session with an EPP server.
 <epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
   <command>
     <logout/>
-    <clTRID>unique-transaction-id</clTRID>
+    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 ```

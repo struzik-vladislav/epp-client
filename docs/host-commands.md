@@ -17,7 +17,7 @@ The EPP **&lt;check&gt;** command is used to determine if an object can be provi
         <host:name>ns3.example.com</host:name>
       </host:check>
     </check>
-    <clTRID>unique-transaction-id</clTRID>
+    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 ```
@@ -75,7 +75,7 @@ The EPP **&lt;create&gt;** command provides a transform operation that allows a 
         <host:addr ip="v6">1080:0:0:0:8:800:200C:417A</host:addr>
       </host:create>
     </create>
-    <clTRID>unique-transaction-id</clTRID>
+    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 ```
@@ -129,7 +129,7 @@ The EPP **&lt;delete&gt;** command provides a transform operation that allows a 
         <host:name>ns1.example.com</host:name>
       </host:delete>
     </delete>
-    <clTRID>unique-transaction-id</clTRID>
+    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 ```
@@ -175,7 +175,7 @@ The EPP **&lt;info&gt;** command is used to retrieve information associated with
         <host:name>ns1.example.com</host:name>
       </host:info>
     </info>
-    <clTRID>unique-transaction-id</clTRID>
+    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 ```
@@ -251,7 +251,7 @@ The EPP **&lt;update&gt;** command provides a transform operation that allows a 
         </host:chg>
       </host:update>
     </update>
-    <clTRID>unique-transaction-id</clTRID>
+    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 ```
