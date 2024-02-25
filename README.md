@@ -8,7 +8,7 @@
 PHP library for communicating with EPP (Extensible Provisioning Protocol) servers.
 
 ### Documentation
-Go to https://struzik-vladislav.github.io/epp-client/.
+Go to [web documentation](https://struzik-vladislav.github.io/epp-client/).
 
 Library implemented according to next RFCs:
 * [RFC 5730](https://tools.ietf.org/html/rfc5730) - Extensible Provisioning Protocol (EPP)
