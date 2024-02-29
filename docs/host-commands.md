@@ -91,11 +91,11 @@ The EPP **&lt;create&gt;** command provides a transform operation that allows a 
 #### Class CreateHostResponse
 `\Struzik\EPPClient\Response\Host\CreateHostResponse`
 
-| Method name                                           | Parameter                                                    | Description                                                                                   |
-|-------------------------------------------------------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| `getHost(): string`                                   |                                                              | Fully qualified name of the host                                                              |
-| `getCreateDate(): string`                             |                                                              | The date and time of host-object creation                                                     |
-| `getCreateDateAsObject(string $format): \DateTime`    | `$format` - format accepted by `DateTimeInterface::format()` | The date and time of host-object creation in object representation                            |
+| Method name                                        | Parameter                                                    | Description                                                        |
+|----------------------------------------------------|--------------------------------------------------------------|--------------------------------------------------------------------|
+| `getHost(): string`                                |                                                              | Fully qualified name of the host                                   |
+| `getCreateDate(): string`                          |                                                              | The date and time of host-object creation                          |
+| `getCreateDateAsObject(string $format): \DateTime` | `$format` - format accepted by `DateTimeInterface::format()` | The date and time of host-object creation in object representation |
 
 #### Usage example
 ```php
