@@ -190,22 +190,22 @@ The EPP **&lt;info&gt;** command is used to retrieve information associated with
 #### Class InfoHostResponse
 `\Struzik\EPPClient\Response\Host\InfoHostResponse`
 
-| Method name                                           | Parameter                                                    | Description                                                                                   |
-|-------------------------------------------------------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| `getHost(): string`                                   |                                                              | Fully qualified name of the host                                                              |
-| `getROIdentifier(): string`                           |                                                              | The Repository Object IDentifier assigned to the host object                                  |
-| `getStatuses(): array`                                |                                                              | The status list of the host object                                                            |
-| `statusExist(string $status): bool`                   | `$status` - one of the available EPP statuses                | Checking the availability of the status in the list                                           |
-| `getAddresses(): array`                               |                                                              | The IP addresses associated with the host object                                              |
-| `getClientId(): string`                               |                                                              | The identifier of the sponsoring client                                                       |
-| `getCreatorId(): string`                              |                                                              | The identifier of the client that created the host object                                     |
-| `getCreateDate(): string`                             |                                                              | The date and time of host-object creation                                                     |
-| `getCreateDateAsObject(string $format): \DateTime`    | `$format` - format accepted by `DateTimeInterface::format()` | The date and time of host-object creation in object representation                            |
-| `getUpdaterId(): ?string`                             |                                                              | The identifier of the client that last updated the host object                                |
-| `getUpdateDate(): ?string`                            |                                                              | The date and time of the most recent host-object modification                                 |
-| `getUpdateDateAsObject(string $format): ?\DateTime`   | `$format` - format accepted by `DateTimeInterface::format()` | The date and time of the most recent host-object modification in object representation        |
-| `getTransferDate(): ?string`                          |                                                              | The date and time of the most recent successful host-object transfer                          |
-| `getTransferDateAsObject(string $format): ?\DateTime` | `$format` - format accepted by `DateTimeInterface::format()` | The date and time of the most recent successful host-object transfer in object representation |
+| Method name                                           | Parameter                                                                 | Description                                                                                   |
+|-------------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `getHost(): string`                                   |                                                                           | Fully qualified name of the host                                                              |
+| `getROIdentifier(): string`                           |                                                                           | The Repository Object IDentifier assigned to the host object                                  |
+| `getStatuses(): array`                                |                                                                           | The status list of the host object                                                            |
+| `statusExist(string $status): bool`                   | `$status` - one of the available [EPP statuses](#Available-status-values) | Checking the existence of the status in the list                                              |
+| `getAddresses(): array`                               |                                                                           | The IP addresses associated with the host object                                              |
+| `getClientId(): string`                               |                                                                           | The identifier of the sponsoring client                                                       |
+| `getCreatorId(): string`                              |                                                                           | The identifier of the client that created the host object                                     |
+| `getCreateDate(): string`                             |                                                                           | The date and time of host-object creation                                                     |
+| `getCreateDateAsObject(string $format): \DateTime`    | `$format` - format accepted by `DateTimeInterface::format()`              | The date and time of host-object creation in object representation                            |
+| `getUpdaterId(): ?string`                             |                                                                           | The identifier of the client that last updated the host object                                |
+| `getUpdateDate(): ?string`                            |                                                                           | The date and time of the most recent host-object modification                                 |
+| `getUpdateDateAsObject(string $format): ?\DateTime`   | `$format` - format accepted by `DateTimeInterface::format()`              | The date and time of the most recent host-object modification in object representation        |
+| `getTransferDate(): ?string`                          |                                                                           | The date and time of the most recent successful host-object transfer                          |
+| `getTransferDateAsObject(string $format): ?\DateTime` | `$format` - format accepted by `DateTimeInterface::format()`              | The date and time of the most recent successful host-object transfer in object representation |
 
 #### Usage example
 ```php

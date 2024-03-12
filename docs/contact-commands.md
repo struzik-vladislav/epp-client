@@ -716,7 +716,7 @@ if ($response->isSuccess()) {
 }
 ```
 
-## Command helpers
+## Command helpers {docsify-ignore}
 
 #### Class PostalInfo (request helper)
 `\Struzik\EPPClient\Request\Contact\Helper\PostalInfo`
