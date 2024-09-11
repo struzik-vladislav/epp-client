@@ -2,6 +2,7 @@
 
 namespace Struzik\EPPClient\Tests\Response\Domain;
 
+use Struzik\EPPClient\NamespaceCollection;
 use Struzik\EPPClient\Node\Domain\DomainContactNode;
 use Struzik\EPPClient\Node\Domain\DomainStatusNode;
 use Struzik\EPPClient\Response\Domain\InfoDomainResponse;
@@ -56,6 +57,85 @@ class InfoDomainResponseTest extends EPPTestCase
 </epp>
 EOF;
         $response = new InfoDomainResponse($xml);
+        $this->assertTrue($response->isSuccess());
+        $this->assertSame('example.com', $response->getDomain());
+        $this->assertSame('ID-0000000001', $response->getROIdentifier());
+        $this->assertSame(['clientHold', 'AutoRenewGracePeriod', 'clientTransferProhibited'], $response->getStatuses());
+        $this->assertTrue($response->statusExist(DomainStatusNode::STATUS_CLIENT_HOLD));
+        $this->assertFalse($response->statusExist(DomainStatusNode::STATUS_OK));
+        $this->assertSame('example-contact-id', $response->getRegistrant());
+        $this->assertSame('example-contact-id', $response->getContactByType(DomainContactNode::TYPE_ADMIN));
+        $this->assertSame('example-contact-id', $response->getContactByType(DomainContactNode::TYPE_BILLING));
+        $this->assertSame('example-contact-id', $response->getContactByType(DomainContactNode::TYPE_TECH));
+        $this->assertSame([DomainContactNode::TYPE_ADMIN => 'example-contact-id', DomainContactNode::TYPE_BILLING => 'example-contact-id', DomainContactNode::TYPE_TECH => 'example-contact-id'], $response->getContacts());
+        $this->assertSame(['ns1.example.com', 'ns2.example.com', 'ns3.example.com'], $response->getNameservers());
+        $this->assertSame(['host1.example.com', 'host2.example.com'], $response->getHosts());
+        $this->assertSame('com.client', $response->getClientId());
+        $this->assertSame('com.creator', $response->getCreatorId());
+        $this->assertSame('2021-03-06T19:59:08+02:00', $response->getCreateDate());
+        $this->assertSame('2021-03-06T19:59:08+02:00', $response->getCreateDateAsObject('Y-m-d\TH:i:sP')->format('Y-m-d\TH:i:sP'));
+        $this->assertSame('2022-03-06T19:59:08+02:00', $response->getExpiryDate());
+        $this->assertSame('2022-03-06T19:59:08+02:00', $response->getExpiryDateAsObject('Y-m-d\TH:i:sP')->format('Y-m-d\TH:i:sP'));
+        $this->assertSame('ua.updater', $response->getUpdaterId());
+        $this->assertSame('2022-03-07T04:26:10+02:00', $response->getUpdateDate());
+        $this->assertSame('2022-03-07T04:26:10+02:00', $response->getUpdateDateAsObject('Y-m-d\TH:i:sP')->format('Y-m-d\TH:i:sP'));
+        $this->assertSame('2018-02-04T10:24:01+02:00', $response->getTransferDate());
+        $this->assertSame('2018-02-04T10:24:01+02:00', $response->getTransferDateAsObject('Y-m-d\TH:i:sP')->format('Y-m-d\TH:i:sP'));
+        $this->assertSame('password', $response->getAuthCode());
+    }
+
+    public function testInfoWithoutNamespacePrefixes(): void
+    {
+        $xml = <<<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg lang="en">Command completed successfully</msg>
+    </result>
+    <resData>
+      <infData xmlns="urn:ietf:params:xml:ns:domain-1.0">
+        <name>example.com</name>
+        <roid>ID-0000000001</roid>
+        <status s="clientHold"/>
+        <status s="AutoRenewGracePeriod"/>
+        <status s="clientTransferProhibited"/>
+        <registrant>example-contact-id</registrant>
+        <contact type="admin">example-contact-id</contact>
+        <contact type="billing">example-contact-id</contact>
+        <contact type="tech">example-contact-id</contact>
+        <ns>
+          <hostObj>ns1.example.com</hostObj>
+          <hostObj>ns2.example.com</hostObj>
+          <hostObj>ns3.example.com</hostObj>
+        </ns>
+        <host>host1.example.com</host>
+        <host>host2.example.com</host>
+        <clID>com.client</clID>
+        <crID>com.creator</crID>
+        <crDate>2021-03-06T19:59:08+02:00</crDate>
+        <upID>ua.updater</upID>
+        <upDate>2022-03-07T04:26:10+02:00</upDate>
+        <exDate>2022-03-06T19:59:08+02:00</exDate>
+        <trDate>2018-02-04T10:24:01+02:00</trDate>
+        <authInfo>
+          <pw>password</pw>
+        </authInfo>
+      </infData>
+    </resData>
+    <trID>
+      <clTRID>CLIENT-TRANSACTION-ID</clTRID>
+      <svTRID>SERVER-TRANSACTION-ID</svTRID>
+    </trID>
+  </response>
+</epp>
+EOF;
+
+        $namespaceCollection = new NamespaceCollection();
+        $namespaceCollection->offsetSet(NamespaceCollection::NS_NAME_ROOT, 'urn:ietf:params:xml:ns:epp-1.0');
+        $namespaceCollection->offsetSet(NamespaceCollection::NS_NAME_DOMAIN, 'urn:ietf:params:xml:ns:domain-1.0');
+
+        $response = new InfoDomainResponse($xml, $namespaceCollection);
         $this->assertTrue($response->isSuccess());
         $this->assertSame('example.com', $response->getDomain());
         $this->assertSame('ID-0000000001', $response->getROIdentifier());

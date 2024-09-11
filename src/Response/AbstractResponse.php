@@ -3,6 +3,7 @@
 namespace Struzik\EPPClient\Response;
 
 use Struzik\EPPClient\Exception\RuntimeException;
+use Struzik\EPPClient\NamespaceCollection;
 use XPath\DOMXPath;
 
 /**
@@ -26,73 +27,50 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
     private array $addons = [];
 
     /**
-     * {@inheritdoc}
-     *
      * @throws RuntimeException
      */
-    public function __construct(string $xml)
+    public function __construct(string $xml, ?NamespaceCollection $namespaceCollection = null, ?NamespaceCollection $extNamespaceCollection = null)
     {
         try {
             parent::__construct();
             $this->preserveWhiteSpace = false;
             $this->loadXML($xml);
-            $this->initDOMXPath();
+            $this->initDOMXPath($namespaceCollection, $extNamespaceCollection);
         } catch (\Throwable $e) {
             throw new RuntimeException('Error has occurred on building response object. See previous exception.', 0, $e);
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     abstract public function isSuccess(): bool;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function get($xpathQuery, \DOMNode $contextNode = null): \DOMNodeList
+    public function get($xpathQuery, ?\DOMNode $contextNode = null): \DOMNodeList
     {
         return $this->xpath->query($xpathQuery, $contextNode);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFirst(string $xpathQuery, \DOMNode $contextNode = null): ?\DOMNode
+    public function getFirst(string $xpathQuery, ?\DOMNode $contextNode = null): ?\DOMNode
     {
         $list = $this->get($xpathQuery, $contextNode);
 
         return count($list) ? $list->item(0) : null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUsedNamespaces(): array
     {
         return $this->namespaces;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addExtAddon(object $addon): void
     {
         $classname = get_class($addon);
         $this->addons[$classname] = $addon;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function removeExtAddon($classname): void
     {
         unset($this->addons[$classname]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function findExtAddon($classname): ?object
     {
         return $this->addons[$classname] ?? null;
@@ -103,14 +81,31 @@ abstract class AbstractResponse extends \DomDocument implements ResponseInterfac
      *
      * @throws \Exception
      */
-    private function initDOMXPath(): void
+    private function initDOMXPath(?NamespaceCollection $namespaceCollection = null, ?NamespaceCollection $extNamespaceCollection = null): void
     {
         $this->xpath = new DOMXPath($this);
+
+        if ($namespaceCollection) {
+            foreach ($namespaceCollection as $name => $uri) {
+                $this->namespaces[$name] = $uri;
+                $this->xpath->registerNamespace($name, $uri);
+            }
+        }
+        if ($extNamespaceCollection) {
+            foreach ($extNamespaceCollection as $name => $uri) {
+                $this->namespaces[$name] = $uri;
+                $this->xpath->registerNamespace($name, $uri);
+            }
+        }
 
         $simpleXML = new \SimpleXMLElement($this->saveXML());
         $namespaces = $simpleXML->getNamespaces(true);
 
         foreach ($namespaces as $name => $uri) {
+            if (in_array($uri, $this->namespaces, true)) {
+                continue;
+            }
+
             $name = $name ?: self::ROOT_NAMESPACE_NAME;
             $this->namespaces[$name] = $uri;
             $this->xpath->registerNamespace($name, $uri);
