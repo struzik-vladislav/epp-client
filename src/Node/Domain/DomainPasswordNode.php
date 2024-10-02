@@ -13,7 +13,8 @@ class DomainPasswordNode
             throw new InvalidArgumentException('Invalid parameter "password".');
         }
 
-        $node = $request->getDocument()->createElement('domain:pw', $password);
+        $node = $request->getDocument()->createElement('domain:pw');
+        $node->appendChild($request->getDocument()->createTextNode($password));
         $parentNode->appendChild($node);
 
         if ($roid !== '') {

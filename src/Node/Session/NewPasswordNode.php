@@ -13,7 +13,8 @@ class NewPasswordNode
             throw new InvalidArgumentException('Invalid parameter "newPassword".');
         }
 
-        $node = $request->getDocument()->createElement('newPW', $newPassword);
+        $node = $request->getDocument()->createElement('newPW');
+        $node->appendChild($request->getDocument()->createTextNode($newPassword));
         $parentNode->appendChild($node);
 
         return $node;

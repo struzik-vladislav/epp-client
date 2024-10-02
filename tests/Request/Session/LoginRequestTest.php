@@ -15,7 +15,7 @@ class LoginRequestTest extends EPPTestCase
   <command>
     <login>
       <clID>login</clID>
-      <pw>password</pw>
+      <pw>password &amp;&lt;&gt;'"</pw>
       <options>
         <version>1.0</version>
         <lang>en</lang>
@@ -33,7 +33,7 @@ class LoginRequestTest extends EPPTestCase
 EOF;
         $request = new LoginRequest($this->eppClient);
         $request->setLogin('login');
-        $request->setPassword('password');
+        $request->setPassword('password &<>\'"');
         $request->setProtocolVersion('1.0');
         $request->setLanguage('en');
         $request->build();
@@ -49,8 +49,8 @@ EOF;
   <command>
     <login>
       <clID>login</clID>
-      <pw>password</pw>
-      <newPW>new-password</newPW>
+      <pw>password &amp;&lt;&gt;'"</pw>
+      <newPW>new-password &amp;&lt;&gt;'"</newPW>
       <options>
         <version>1.0</version>
         <lang>en</lang>
@@ -68,8 +68,8 @@ EOF;
 EOF;
         $request = new LoginRequest($this->eppClient);
         $request->setLogin('login');
-        $request->setPassword('password');
-        $request->setNewPassword('new-password');
+        $request->setPassword('password &<>\'"');
+        $request->setNewPassword('new-password &<>\'"');
         $request->setProtocolVersion('1.0');
         $request->setLanguage('en');
         $request->build();

@@ -13,7 +13,8 @@ class ContactPasswordNode
             throw new InvalidArgumentException('Invalid parameter "password".');
         }
 
-        $node = $request->getDocument()->createElement('contact:pw', $password);
+        $node = $request->getDocument()->createElement('contact:pw');
+        $node->appendChild($request->getDocument()->createTextNode($password));
         $parentNode->appendChild($node);
 
         return $node;

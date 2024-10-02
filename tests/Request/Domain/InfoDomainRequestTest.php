@@ -65,7 +65,7 @@ EOF;
       <domain:info xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
         <domain:name hosts="all">example.com</domain:name>
         <domain:authInfo>
-          <domain:pw>password</domain:pw>
+          <domain:pw>password &amp;&lt;&gt;'"</domain:pw>
         </domain:authInfo>
       </domain:info>
     </info>
@@ -77,7 +77,7 @@ EOF;
         $request = new InfoDomainRequest($this->eppClient);
         $request->setDomain('example.com');
         $request->setHosts(DomainNameNode::HOSTS_ALL);
-        $request->setPassword('password');
+        $request->setPassword('password &<>\'"');
         $request->build();
 
         $this->assertSame($expected, $request->getDocument()->saveXML());

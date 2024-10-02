@@ -40,7 +40,7 @@ EOF;
       <contact:info xmlns:contact="urn:ietf:params:xml:ns:contact-1.0">
         <contact:id>example-contact-id</contact:id>
         <contact:authInfo>
-          <contact:pw>password</contact:pw>
+          <contact:pw>password &amp;&lt;&gt;'"</contact:pw>
         </contact:authInfo>
       </contact:info>
     </info>
@@ -51,7 +51,7 @@ EOF;
 EOF;
         $request = new InfoContactRequest($this->eppClient);
         $request->setIdentifier('example-contact-id');
-        $request->setPassword('password');
+        $request->setPassword('password &<>\'"');
         $request->build();
 
         $this->assertSame($expected, $request->getDocument()->saveXML());
