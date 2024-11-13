@@ -16,6 +16,7 @@
     * [UAEPP (hostmaster.ua)](https://github.com/struzik-vladislav/epp-ext-hostmasterua-uaepp)
     * [Balance (hostmaster.ua)](https://github.com/struzik-vladislav/epp-ext-hostmasterua-balance)
     * [Charge (identity.digital)](https://github.com/struzik-vladislav/epp-ext-iddigital-charge)
+    * [Key-Value (identity.digital)](https://github.com/struzik-vladislav/epp-ext-iddigital-kv)
 
 * Tools
     * [Monolog formatter](https://github.com/struzik-vladislav/epp-monolog-formatter)

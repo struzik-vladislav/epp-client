@@ -38,6 +38,7 @@ The Extensible Provisioning Protocol (EPP) is a protocol used to manage domain n
 * [struzik-vladislav/epp-ext-hostmasterua-uaepp](https://github.com/struzik-vladislav/epp-ext-hostmasterua-uaepp) - UAEPP extension provided by [HostmasterUA](https://hostmaster.ua/)
 * [struzik-vladislav/epp-ext-hostmasterua-balance](https://github.com/struzik-vladislav/epp-ext-hostmasterua-balance) - Balance extension provided by [HostmasterUA](https://hostmaster.ua/)
 * [struzik-vladislav/epp-ext-iddigital-charge](https://github.com/struzik-vladislav/epp-ext-iddigital-charge) - Charge extension provided by [Identity Digital](https://www.identity.digital/)
+* [struzik-vladislav/epp-ext-iddigital-kv](https://github.com/struzik-vladislav/epp-ext-iddigital-kv) - Key-Value extension provided by [Identity Digital](https://www.identity.digital/)
 
 **Tools:** Add-ons that allow you to integrate various services or developer tools with the EPP client.
 * [struzik-vladislav/epp-monolog-formatter](https://github.com/struzik-vladislav/epp-monolog-formatter) - Requests/Responses [monolog/monolog](https://github.com/Seldaek/monolog) formatter for hiding sensitive data  
