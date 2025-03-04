@@ -86,7 +86,7 @@ class EPPClient
 
         // Creating a response
         $responseClass = $request->getResponseClass();
-        $response = new $responseClass($responseXML);
+        $response = new $responseClass($responseXML, $this->getNamespaceCollection(), $this->getExtNamespaceCollection());
 
         // Handle response in the extension
         foreach ($this->extensionStack as $extension) {
