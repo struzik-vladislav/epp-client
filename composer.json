@@ -25,6 +25,7 @@
         "struzik-vladislav/epp-socket-connection": "Socket connection to the EPP servers",
         "struzik-vladislav/epp-rabbitmq-connection": "Connection to the EPP servers via RabbitMQ",
         "struzik-vladislav/epp-ext-rgp": "Domain Registry Grace Period (RGP) extension for the EPP Client",
+        "struzik-vladislav/epp-ext-idn": "Internationalized Domain Name (IDN) extension for the EPP Client",
         "struzik-vladislav/epp-ext-secdns": "DNS Security Extension for the EPP Client",
         "struzik-vladislav/epp-ext-hostmasterua-uaepp": "UAEPP extension provided by Hostmaster (https://hostmaster.ua/)",
         "struzik-vladislav/epp-ext-hostmasterua-balance": "Balance extension provided by Hostmaster (https://hostmaster.ua/)",
