@@ -34,6 +34,7 @@ The Extensible Provisioning Protocol (EPP) is a protocol used to manage domain n
 
 **Extensions:** The library supports various extensions for specialized functionalities beyond the core EPP protocol. The list of available extensions is updated as new extensions are implemented. The actual list of extensions:
 * [struzik-vladislav/epp-ext-rgp](https://github.com/struzik-vladislav/epp-ext-rgp) - Domain Registry Grace Period (RGP) extension for the EPP Client
+* [struzik-vladislav/epp-ext-idn](https://github.com/struzik-vladislav/epp-ext-idn) - Internationalized Domain Name (IDN) extension for the EPP Client
 * [struzik-vladislav/epp-ext-secdns](https://github.com/struzik-vladislav/epp-ext-secdns) - DNS Security Extension for the EPP Client
 * [struzik-vladislav/epp-ext-hostmasterua-uaepp](https://github.com/struzik-vladislav/epp-ext-hostmasterua-uaepp) - UAEPP extension provided by [HostmasterUA](https://hostmaster.ua/)
 * [struzik-vladislav/epp-ext-hostmasterua-balance](https://github.com/struzik-vladislav/epp-ext-hostmasterua-balance) - Balance extension provided by [HostmasterUA](https://hostmaster.ua/)

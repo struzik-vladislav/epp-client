@@ -11,8 +11,9 @@
     * [Poll  commands](poll-commands.md)
 
 * Extensions
-    * [RGP (RFC 3915)](https://github.com/struzik-vladislav/epp-ext-rgp)
-    * [SecDNS (RFC 4310 5910)](https://github.com/struzik-vladislav/epp-ext-secdns)
+    * [RGP (urn:ietf:params:xml:ns:rgp-1.0)](https://github.com/struzik-vladislav/epp-ext-rgp)
+    * [IDN (urn:ietf:params:xml:ns:idn-1.0)](https://github.com/struzik-vladislav/epp-ext-idn)
+    * [SecDNS (urn:ietf:params:xml:ns:secDNS-1.1)](https://github.com/struzik-vladislav/epp-ext-secdns)
     * [UAEPP (hostmaster.ua)](https://github.com/struzik-vladislav/epp-ext-hostmasterua-uaepp)
     * [Balance (hostmaster.ua)](https://github.com/struzik-vladislav/epp-ext-hostmasterua-balance)
     * [Charge (identity.digital)](https://github.com/struzik-vladislav/epp-ext-iddigital-charge)
