@@ -30,7 +30,8 @@
         "struzik-vladislav/epp-ext-hostmasterua-uaepp": "UAEPP extension provided by Hostmaster (https://hostmaster.ua/)",
         "struzik-vladislav/epp-ext-hostmasterua-balance": "Balance extension provided by Hostmaster (https://hostmaster.ua/)",
         "struzik-vladislav/epp-ext-iddigital-charge": "Charge extension provided by Identity Digital (https://www.identity.digital/)",
-        "struzik-vladislav/epp-ext-iddigital-kv": "Key-Value extension provided by Identity Digital (https://www.identity.digital/)"
+        "struzik-vladislav/epp-ext-iddigital-kv": "Key-Value extension provided by Identity Digital (https://www.identity.digital/)",
+        "struzik-vladislav/epp-ext-verisign-namestore": "Namestore extension provided by Verisign (https://www.verisign.com/)"
     },
     "autoload": {
         "psr-4": {

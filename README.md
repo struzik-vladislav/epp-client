@@ -30,6 +30,7 @@ Library implemented according to next RFCs:
 * [struzik-vladislav/epp-ext-hostmasterua-balance](https://github.com/struzik-vladislav/epp-ext-hostmasterua-balance) - Balance extension provided by [HostmasterUA](https://hostmaster.ua/)
 * [struzik-vladislav/epp-ext-iddigital-charge](https://github.com/struzik-vladislav/epp-ext-iddigital-charge) - Charge extension provided by [Identity Digital](https://www.identity.digital/)
 * [struzik-vladislav/epp-ext-iddigital-kv](https://github.com/struzik-vladislav/epp-ext-iddigital-kv) - Key-value extension provided by [Identity Digital](https://www.identity.digital/)
+* [struzik-vladislav/epp-ext-verisign-namestore](https://github.com/struzik-vladislav/epp-ext-verisign-namestore) - Namestore extension provided by [Verisign](https://www.verisign.com/)
 
 ### Tools
 * [struzik-vladislav/epp-monolog-formatter](https://github.com/struzik-vladislav/epp-monolog-formatter) - Requests/Responses [monolog/monolog](https://github.com/Seldaek/monolog) formatter for hiding sensitive data  
