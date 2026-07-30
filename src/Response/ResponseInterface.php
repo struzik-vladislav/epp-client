@@ -197,12 +197,12 @@ interface ResponseInterface
      *
      * @param  string The XPath expression to execute
      */
-    public function get(string $xpathQuery, \DOMNode $contextNode = null): \DOMNodeList;
+    public function get(string $xpathQuery, ?\DOMNode $contextNode = null): \DOMNodeList;
 
     /**
      * Evaluates the given XPath expression and return the first element from DOMNodeList or null.
      */
-    public function getFirst(string $xpathQuery, \DOMNode $contextNode = null): ?\DOMNode;
+    public function getFirst(string $xpathQuery, ?\DOMNode $contextNode = null): ?\DOMNode;
 
     /**
      * Returns namespaces used in document.
