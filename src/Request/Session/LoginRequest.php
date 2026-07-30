@@ -116,7 +116,7 @@ class LoginRequest extends AbstractRequest
      *
      * @param string|null $newPassword new user password
      */
-    public function setNewPassword(string $newPassword = null): self
+    public function setNewPassword(?string $newPassword = null): self
     {
         $this->newPassword = $newPassword;
 
