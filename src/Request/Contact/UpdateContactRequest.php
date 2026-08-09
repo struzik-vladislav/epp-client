@@ -338,7 +338,7 @@ class UpdateContactRequest extends AbstractRequest
      *
      * @param Disclose|null $disclose disclosure preferences
      */
-    public function setDisclose(Disclose $disclose = null): self
+    public function setDisclose(?Disclose $disclose = null): self
     {
         $this->disclose = $disclose;
 
